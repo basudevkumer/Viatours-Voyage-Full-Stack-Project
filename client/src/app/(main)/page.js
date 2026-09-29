@@ -1,27 +1,36 @@
 import Bannar from "@/sections/home/Bannar";
+import HomeMotion from "@/components/animation/HomeMotion";
 import BestPlace from "@/sections/home/BestPlace";
-import ChooseTour from "@/sections/home/ChooseTour";
-import Footprints from "@/sections/home/Footprints";
-import Popular from "@/sections/home/Popular";
+import Experiences from "@/sections/home/Experiences";
+import FinalCTA from "@/sections/home/FinalCTA";
+import HowItWorks from "@/sections/home/HowItWorks";
+import Newsletter from "@/sections/home/Newsletter";
+import SpecialDeals from "@/sections/home/SpecialDeals";
+import TrustBar from "@/sections/home/TrustBar";
 import Travel from "@/sections/home/Travel";
 import Travelers from "@/sections/home/Travelers";
 import Trending from "@/sections/home/Trending";
 import Trip from "@/sections/home/Trip";
+import WhyChooseUs from "@/sections/home/WhyChooseUs";
 import React from "react";
 
 const Home = () => {
   return (
-    <>
+    <HomeMotion>
       <Bannar />
+      <TrustBar />
       <Trending />
       <Trip />
-      <ChooseTour />
-      <Popular />
-      <Footprints />
-      <BestPlace/>
-      <Travelers/>
-      <Travel/>
-    </>
+      <Experiences />
+      <BestPlace />
+      <SpecialDeals />
+      <WhyChooseUs />
+      <HowItWorks />
+      <Travelers />
+      <Travel />
+      <Newsletter />
+      <FinalCTA />
+    </HomeMotion>
   );
 };
 
