@@ -1,0 +1,15 @@
+{
+  "name": "viatours-voyage-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Viatours Voyage full-stack monorepo with a Next.js client and MERN server.",
+  "scripts": {
+    "dev": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix client run start",
+    "lint": "npm --prefix client run lint",
+    "dev:client": "npm --prefix client run dev",
+    "build:client": "npm --prefix client run build",
+    "lint:client": "npm --prefix client run lint"
+  }
+}

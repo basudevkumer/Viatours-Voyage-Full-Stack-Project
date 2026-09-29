@@ -1,0 +1,102 @@
+/*
+ * Viatours Voyage — Design Tokens
+ * Single source of truth for visual consistency.
+ * Do not create competing color/typography tokens in individual components.
+ */
+
+@theme {
+  /* Brand */
+  --color-primary-start: #888bf4;
+  --color-primary-end: #5151c6;
+  --color-dark: #05073c;
+  --color-accent: #eb662b;
+
+  /* Semantic backgrounds */
+  --color-bg-white: #ffffff;
+  --color-bg-cream: #fff7f4;
+  --color-bg-dark: #05073c;
+  --color-bg-field: #f3f5f7;
+  --color-bg-grey: #f6f7f9;
+  --color-bg-primary: #f1f1fe;
+  --color-bg-overlay: #333333d0;
+  --color-commonbg: #eb652b0f;
+
+  /* Neutral scale */
+  --color-gray1: #333333;
+  --color-gray2: #4f4f4f;
+  --color-gray3: #828282;
+  --color-gray4: #bdbdbd;
+  --color-gray5: #e0e0e0;
+  --color-gray6: #ecedee;
+  --color-gray7: #f2f2f2;
+
+  /* Semantic text */
+  --color-text-dark: #05073c;
+  --color-text-primary: #242424;
+  --color-text-secondary: #828282;
+  --color-text-placeholder: #bdbdbd;
+  --color-text-tertiary: #bdbdbd;
+  --color-text-white: #ffffff;
+  --color-text-light: #a5b4c8;
+
+  /* Status */
+  --color-error: #e95050;
+}
+
+@layer utilities {
+  .bg-primary {
+    background: linear-gradient(to left, #888bf4 0%, #5151c6 100%);
+  }
+
+  .text-primary {
+    background: linear-gradient(to left, #888bf4 0%, #5151c6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Typography scale — use these classes consistently across product UI. */
+.heading {
+  @apply text-4xl/[120%] font-semibold tracking-[-0.1px];
+}
+
+.title1 {
+  @apply text-xl/[120%] font-semibold;
+}
+
+.title2 {
+  @apply text-lg/[120%] font-semibold tracking-[-0.1px];
+}
+
+.title3 {
+  @apply text-base/[120%] font-medium tracking-[-0.1px];
+}
+
+.title4 {
+  @apply text-sm/[120%] font-medium;
+}
+
+.body-semibold {
+  @apply text-base/[150%] font-semibold tracking-[-0.3px];
+}
+
+.body1 {
+  @apply text-lg/[150%] font-normal tracking-[-0.4px];
+}
+
+.body3 {
+  @apply text-base/[150%] font-normal tracking-[-0.2px];
+}
+
+.body4 {
+  @apply text-sm/[150%] font-normal tracking-[-0.1px];
+}
+
+.body5 {
+  @apply text-xs/[150%] font-normal tracking-[-0.1px];
+}
+
+.caption {
+  @apply text-sm/[120%] font-normal tracking-[2px];
+}

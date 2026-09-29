@@ -1,0 +1,50 @@
+"use client";
+
+import Container from "@/components/shared/Container";
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/free-mode";
+import allImages from "@/components/helper/imageProvider";
+import BestCard from "@/components/shared/BestCart";
+
+const BestPlace = () => {
+  const { bestTrips } = allImages;
+
+  return (
+    <section className="py-10 sm:py-14 lg:py-[60px]">
+      <Container>
+        {/* Heading */}
+        <h4 className="heading !text-2xl sm:!text-[28px] lg:!text-[30px] text-dark pb-6 sm:pb-8 lg:pb-12">
+          Best of <span className="text-gray3">New York</span>
+        </h4>
+
+        {/* Swiper */}
+        <Swiper
+          freeMode={true}
+          modules={[FreeMode, Autoplay]}
+          autoplay={{ delay: 2500, disableOnInteraction: false }}
+          spaceBetween={12}
+          slidesPerView={1.2}
+          breakpoints={{
+            400: { slidesPerView: 1.4, spaceBetween: 14 },
+            540: { slidesPerView: 2,   spaceBetween: 16 },
+            768: { slidesPerView: 2.5, spaceBetween: 20 },
+            1024: { slidesPerView: 3,  spaceBetween: 24 },
+            1280: { slidesPerView: 4,  spaceBetween: 30 },
+          }}
+          className="mySwiper"
+        >
+          {bestTrips.map((items, index) => (
+            <SwiperSlide key={index}>
+              <BestCard item={items} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Container>
+    </section>
+  );
+};
+
+export default BestPlace;
