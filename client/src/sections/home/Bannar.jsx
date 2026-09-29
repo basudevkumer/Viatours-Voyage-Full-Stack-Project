@@ -22,11 +22,11 @@ const Bannar = () => {
               <p className="title4 sm:title3 text-white">Starting at $978</p>
 
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[120%] tracking-[-0.1px] text-white max-w-[320px] sm:max-w-[380px] lg:max-w-[400px] pt-3 sm:pt-4 lg:pt-5 pb-4 sm:pb-5 lg:pb-6">
-                Iceland's Legendary Golden Circle
+                Iceland&apos;s Legendary Golden Circle
               </h1>
 
               <p className="body4 sm:title4 text-white mb-5 sm:mb-6 max-w-[300px] sm:max-w-[380px] lg:max-w-[425px]">
-                Enjoy a full-day bus tour of Iceland's legendary Golden Circle.
+                Enjoy a full-day bus tour of Iceland&apos;s legendary Golden Circle.
                 Soak in the warm thermal waters of the Secret Lagoon.
               </p>
 

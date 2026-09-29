@@ -3,50 +3,13 @@ import allImages from "./imageProvider";
 const {tikit,daimond,airBlaun} =  allImages
  
 const navLinks = [
-  {
-    id: 1,
-    label: "Home",
-    path: "/",
-  },
-  {
-    id: 2,
-    label: "Tour",
-    path: "",
-    children: [
-      { label: "Tour List", path: "/tour/list" },
-      { label: "Tour Details", path: "/tour/details" },
-    ],
-  },
-  {
-    id: 3,
-    label: "Destination",
-    path: "",
-  },
-  {
-    id: 4,
-    label: "Activities",
-    path: "",
-  },
-  {
-    id: 5,
-    label: "Pages",
-    path: "",
-    children: [
-      { label: "About", path: "" },
-      { label: "FAQ", path: "" },
-    ],
-  },
-  {
-    id: 6,
-    label: "Contact",
-    path: "",
-  },
-];
-
-const navLinksleft = [
-  { id: 1, label: "USD", href: "/currency" },
-  { id: 2, label: "Sign up", href: "/signup" },
-  { id: 3, label: "Log in", href: "/login" },
+  { id: 1, label: "DESTINATIONS", path: "/destinations" },
+  { id: 2, label: "TOURS", path: "/tours" },
+  { id: 3, label: "EXPERIENCES", path: "/activities" },
+  { id: 4, label: "TRAVEL GUIDE", path: "/pages" },
+  { id: 5, label: "DEALS", path: "/tours" },
+  { id: 6, label: "ABOUT", path: "/pages" },
+  { id: 7, label: "CONTACT", path: "/contact" },
 ];
 
 export const footerData = [
@@ -94,4 +57,4 @@ const tourfeature = [
   },
 ];
 
-export { navLinks, navLinksleft, footerData, tourfeature };
+export { navLinks, tourfeature };
