@@ -1,5 +1,9 @@
 import "./globals.css";
 import localFont from "next/font/local";
+import Providers from "@/components/Providers";
+import { createMetadata } from "@/lib/seo";
+
+export const metadata = createMetadata({ title: "Viatours Voyage", description: "Discover tours, local experiences and destinations for your next journey." });
 
 const inter = localFont({
   src: [
@@ -26,7 +30,7 @@ const inter = localFont({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased`}><Providers>{children}</Providers></body>
     </html>
   );
 }

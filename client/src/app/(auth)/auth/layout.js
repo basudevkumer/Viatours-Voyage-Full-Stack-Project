@@ -1,9 +1,6 @@
-import React from 'react'
+import AuthCard from "@/components/layout/AuthCard";
 
-const AuthLayout = ({children}) => {
-  return (
-    <div>{children}</div>
-  )
-}
+export const metadata = { title: "Account Access | Viatours Voyage", robots: { index: false, follow: false } };
+const AuthLayout = ({ children }) => <AuthCard>{children}</AuthCard>;
 
 export default AuthLayout

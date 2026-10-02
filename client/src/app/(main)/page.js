@@ -13,6 +13,9 @@ import Trending from "@/sections/home/Trending";
 import Trip from "@/sections/home/Trip";
 import WhyChooseUs from "@/sections/home/WhyChooseUs";
 import React from "react";
+import { createMetadata } from "@/lib/seo";
+
+export const metadata = createMetadata({ title: "Viatours Voyage | Find Your Next Journey", description: "Explore curated tours, destinations, and local experiences for your next trip.", path: "/" });
 
 const Home = () => {
   return (

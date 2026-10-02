@@ -8,26 +8,21 @@ import allImages from "@/components/helper/imageProvider";
 import { navLinks } from "@/components/helper/projectsData";
 import Container from "../shared/Container";
 import Button from "@/components/ui/Button";
+import MobileNav from "@/components/layout/MobileNav";
+import UserMenu from "@/components/layout/UserMenu";
 
 const Navbar = () => {
   const pathname = usePathname();
   const { navlogo } = allImages;
-  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) setMenuOpen(false);
-    };
-
     handleScroll();
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -78,6 +73,7 @@ const Navbar = () => {
           </div>
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <UserMenu />
             <Button
               href="/contact"
               size="md"
@@ -87,42 +83,8 @@ const Navbar = () => {
               PLAN YOUR TRIP
             </Button>
 
-            <button
-              type="button"
-              aria-controls="mobile-navigation"
-              aria-expanded={menuOpen}
-              aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-              onClick={() => setMenuOpen((open) => !open)}
-              className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-[12px] border border-white/30 text-white transition-colors hover:border-white lg:hidden"
-            >
-              <span className={`block h-0.5 w-5 bg-current transition-transform ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
-              <span className={`block h-0.5 w-4 bg-current transition-opacity ${menuOpen ? "opacity-0" : ""}`} />
-              <span className={`block h-0.5 w-5 bg-current transition-transform ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
-            </button>
+            <MobileNav />
           </div>
-        </div>
-
-        <div
-          id="mobile-navigation"
-          hidden={!menuOpen}
-          className="border-t border-white/10 pb-5 pt-3 lg:hidden"
-        >
-          <ul className="flex flex-col">
-            {navLinks.map((item) => (
-              <li key={item.id}>
-                <Link
-                  href={item.path}
-                  onClick={() => setMenuOpen(false)}
-                  aria-current={isActive(item.path) ? "page" : undefined}
-                  className={`title4 block border-b border-white/10 py-3 text-white transition-colors hover:text-accent ${
-                    isActive(item.path) ? "text-accent" : ""
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
       </Container>
     </nav>
