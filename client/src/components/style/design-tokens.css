@@ -43,6 +43,8 @@
 
   /* Status */
   --color-error: #e95050;
+  --color-success: #16803c;
+  --color-bg-success: #ecfdf3;
 }
 
 @layer utilities {

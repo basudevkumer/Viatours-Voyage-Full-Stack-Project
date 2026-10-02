@@ -1,5 +1,6 @@
 import { FiArrowRight } from "react-icons/fi";
 import Container from "@/components/shared/Container";
+import Button from "@/components/ui/Button";
 
 const Newsletter = () => (
   <section className="bg-bg-grey py-14 sm:py-16 lg:py-20">
@@ -27,13 +28,15 @@ const Newsletter = () => (
             placeholder="Your email address"
             className="body4 min-w-0 flex-1 rounded-[12px] border border-gray5 bg-bg-field px-4 py-3 text-dark placeholder:text-text-secondary focus:border-accent focus:outline-none"
           />
-          <button
+          <Button
             type="submit"
             aria-label="Get travel ideas"
-            className="flex shrink-0 items-center gap-2 rounded-[12px] bg-accent px-4 py-3 title4 text-white transition-colors hover:bg-dark sm:px-5"
+            rightIcon={<FiArrowRight aria-hidden="true" />}
+            className="shrink-0 px-4 sm:px-5"
+            data-analytics-id="newsletter-submit"
           >
-            Get travel ideas <FiArrowRight aria-hidden="true" />
-          </button>
+            Get travel ideas
+          </Button>
         </form>
       </div>
     </Container>

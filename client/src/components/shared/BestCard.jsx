@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { IoMdStar } from "react-icons/io";
+import RatingStars from "@/components/ui/RatingStars";
+import PriceTag from "@/components/ui/PriceTag";
 
 
 const BestCard = ({ item }) => {
@@ -29,9 +30,7 @@ const BestCard = ({ item }) => {
 
         {/* Rating */}
         <div className="flex items-center gap-1 mb-2 sm:mb-3">
-          <span className="text-accent text-xs sm:text-sm"><IoMdStar/></span>
-          <span className="body5 sm:body4 font-semibold text-dark">{rating}</span>
-          <span className="body5 sm:body4 text-text-secondary">({reviews})</span>
+          <RatingStars rating={rating} reviewsCount={reviews} showCount size="sm" />
         </div>
 
         {/* Footer */}
@@ -39,10 +38,7 @@ const BestCard = ({ item }) => {
           <span className="body5 sm:body4 text-text-secondary whitespace-nowrap">
             {days} days
           </span>
-          <span className="body5 sm:body4 text-text-secondary text-right">
-            From{" "}
-            <span className="title4 sm:title3 text-dark">${price}</span>
-          </span>
+          <PriceTag price={price} size="sm" suffix="" className="justify-end" />
         </div>
 
       </div>

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import allImages from "@/components/helper/imageProvider";
 import { navLinks } from "@/components/helper/projectsData";
 import Container from "../shared/Container";
+import Button from "@/components/ui/Button";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -77,13 +78,14 @@ const Navbar = () => {
           </div>
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-            <Link
+            <Button
               href="/contact"
+              size="md"
               data-analytics-id="navbar-plan-your-trip"
-              className="title4 rounded-[12px] bg-accent px-2 py-3 text-white transition-colors hover:bg-white hover:text-accent sm:px-5"
+              className="px-2 hover:!bg-white hover:!text-accent sm:px-5"
             >
               PLAN YOUR TRIP
-            </Link>
+            </Button>
 
             <button
               type="button"

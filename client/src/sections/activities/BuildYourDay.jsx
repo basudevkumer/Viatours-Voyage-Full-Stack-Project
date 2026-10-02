@@ -1,5 +1,5 @@
 import Container from "@/components/shared/Container";
-import Link from "next/link";
+import Button from "@/components/ui/Button";
 import {
   FiArrowDown,
   FiArrowRight,
@@ -44,12 +44,15 @@ const BuildYourDay = () => (
             </div>
           ))}
         </div>
-        <Link
+        <Button
           href="#discover"
-          className="title4 mt-8 inline-flex items-center gap-2 rounded-xl bg-dark px-5 py-4 text-white hover:bg-accent"
+          variant="secondary"
+          size="lg"
+          rightIcon={<FiArrowRight />}
+          className="mt-8"
         >
-          Explore experiences <FiArrowRight />
-        </Link>
+          Explore experiences
+        </Button>
       </div>
     </Container>
   </section>

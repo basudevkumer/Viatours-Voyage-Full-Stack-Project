@@ -1,13 +1,18 @@
 "use client";
+
 import Container from "@/components/shared/Container";
-import { useMemo, useState } from "react";
-import { FiFilter } from "react-icons/fi";
 import SectionHeading from "@/components/shared/SectionHeading";
 import TourCard from "@/components/shared/TourCard";
 import TourFilters from "@/components/shared/TourFilters";
+import BottomSheet from "@/components/ui/BottomSheet";
+import Button from "@/components/ui/Button";
+import EmptyState from "@/components/ui/EmptyState";
+import Select from "@/components/ui/Select";
+import { useMemo, useState } from "react";
+import { FiFilter } from "react-icons/fi";
 import { tours } from "./data";
 
-const TourDiscovery = () => {
+export default function TourDiscovery() {
   const [filters, setFilters] = useState({ search: "", destination: "all", category: "all", maxPrice: 900 });
   const [sort, setSort] = useState("recommended");
   const [mobileFilters, setMobileFilters] = useState(false);
@@ -20,12 +25,11 @@ const TourDiscovery = () => {
     });
     return [...result].sort((a, b) => sort === "price-low" ? Number(a.price) - Number(b.price) : sort === "price-high" ? Number(b.price) - Number(a.price) : b.rating - a.rating);
   }, [filters, sort]);
-  const sortControl = <select value={sort} onChange={(event) => setSort(event.target.value)} className="body4 rounded-lg border border-gray5 bg-white px-3 py-2 text-dark outline-none"><option value="recommended">Recommended</option><option value="rating">Highest rated</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option></select>;
+  const sortOptions = <><option value="recommended">Recommended</option><option value="rating">Highest rated</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option></>;
 
   return <section id="discover" className="scroll-mt-24 py-14 sm:py-20"><Container>
     <SectionHeading eyebrow="CHOOSE YOUR WAY TO GO" title="Tours made for your kind of travel" text="Search less, discover more. Compare trusted experiences and find the one that feels like you." />
-    <div className="mb-7 flex items-center justify-between gap-3 lg:hidden"><button type="button" onClick={() => setMobileFilters(true)} className="title4 inline-flex items-center gap-2 rounded-xl border border-gray5 bg-white px-4 py-3 text-dark"><FiFilter /> Filters</button>{sortControl}</div>
-    <div className="grid gap-8 lg:grid-cols-[245px_1fr]"><aside className="hidden rounded-2xl border border-gray6 bg-white p-5 lg:block"><TourFilters filters={filters} setFilters={setFilters} destinations={destinations} categories={categories} /></aside><div><div className="mb-6 hidden items-center justify-between lg:flex"><p className="body3 text-text-secondary"><span className="font-semibold text-dark">{filteredTours.length}</span> experiences found</p>{sortControl}</div>{filteredTours.length ? <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">{filteredTours.map((tour) => <TourCard key={tour.id} tour={tour} />)}</div> : <div className="rounded-2xl border border-gray6 bg-white p-10 text-center"><h3 className="title1 text-dark">No tours match those filters</h3><p className="body3 mt-2 text-text-secondary">Try broadening your search or clearing a filter.</p></div>}</div></div>
-  </Container>{mobileFilters && <div className="fixed inset-0 z-[60] lg:hidden"><button type="button" aria-label="Close filter panel" onClick={() => setMobileFilters(false)} className="absolute inset-0 bg-dark/50" /><div className="absolute bottom-0 left-0 right-0 max-h-[85vh] overflow-y-auto rounded-t-3xl bg-white p-5 shadow-2xl"><TourFilters filters={filters} setFilters={setFilters} destinations={destinations} categories={categories} mobile onClose={() => setMobileFilters(false)} /><button type="button" onClick={() => setMobileFilters(false)} className="title4 mt-7 w-full rounded-xl bg-dark py-4 text-white">Show {filteredTours.length} tours</button></div></div>}</section>;
-};
-export default TourDiscovery;
+    <div className="mb-7 flex items-center justify-between gap-3 lg:hidden"><Button variant="outline" leftIcon={<FiFilter />} onClick={() => setMobileFilters(true)} aria-expanded={mobileFilters} aria-controls="tour-filter-sheet">Filters</Button><Select label="Sort tours" labelClassName="sr-only" wrapperClassName="w-auto" className="rounded-lg px-3 py-2" value={sort} onChange={(event) => setSort(event.target.value)}>{sortOptions}</Select></div>
+    <div className="grid gap-8 lg:grid-cols-[245px_1fr]"><aside className="hidden rounded-2xl border border-gray6 bg-white p-5 lg:block"><TourFilters filters={filters} setFilters={setFilters} destinations={destinations} categories={categories} /></aside><div><div className="mb-6 hidden items-center justify-between lg:flex"><p className="body3 text-text-secondary"><span className="font-semibold text-dark">{filteredTours.length}</span> experiences found</p><Select label="Sort tours" labelClassName="sr-only" wrapperClassName="w-auto" className="rounded-lg px-3 py-2" value={sort} onChange={(event) => setSort(event.target.value)}>{sortOptions}</Select></div>{filteredTours.length ? <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">{filteredTours.map((tour) => <TourCard key={tour.id} tour={tour} />)}</div> : <EmptyState title="No tours match those filters" text="Try broadening your search or clearing a filter." />}</div></div>
+  </Container><BottomSheet open={mobileFilters} onClose={() => setMobileFilters(false)} title="Filter tours" className="!max-w-lg" overlayClassName="items-end p-0 lg:hidden"><div id="tour-filter-sheet"><TourFilters filters={filters} setFilters={setFilters} destinations={destinations} categories={categories} /><Button variant="secondary" fullWidth className="mt-6" onClick={() => setMobileFilters(false)}>Show {filteredTours.length} tours</Button></div></BottomSheet></section>;
+}

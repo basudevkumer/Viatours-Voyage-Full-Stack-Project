@@ -1,4 +1,5 @@
 import Container from "@/components/shared/Container";
+import Button from "@/components/ui/Button";
 import Image from "next/image";
 import { FiArrowRight, FiCalendar, FiMapPin, FiSearch, FiUsers } from "react-icons/fi";
 import { trendingDestinations } from "@/sections/tours/data";
@@ -16,7 +17,7 @@ const ExperiencesHero = () => (
             <label className="flex items-center gap-2 rounded-xl px-3 py-2 sm:rounded-full"><FiSearch className="shrink-0 text-accent" /><span className="sr-only">What do you want to do?</span><input name="experience" placeholder="What do you want to do?" className="body4 w-full min-w-0 text-dark outline-none" /></label>
             <label className="flex items-center gap-2 border-t border-gray6 px-3 py-2 sm:border-l sm:border-t-0"><FiMapPin className="text-accent" /><span className="sr-only">Destination</span><input name="destination" placeholder="Where?" className="body4 w-full min-w-0 text-dark outline-none" /></label>
             <label className="flex items-center gap-2 border-t border-gray6 px-3 py-2 sm:border-l sm:border-t-0"><FiCalendar className="text-accent" /><span className="sr-only">Date</span><input name="date" placeholder="When?" className="body4 w-full min-w-0 text-dark outline-none" /></label>
-            <button className="title4 rounded-xl bg-accent px-5 py-3 text-white hover:bg-dark sm:rounded-full">Find experiences</button>
+            <Button type="submit" size="md" className="sm:rounded-full" data-analytics-id="experiences-hero-search">Find experiences</Button>
           </form>
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/60"><span><FiUsers className="mr-1 inline text-accent" />Small-group options</span><span><FiArrowRight className="mr-1 inline text-accent" />Local experiences</span></div>
         </div>

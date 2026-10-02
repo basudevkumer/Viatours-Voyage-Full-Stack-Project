@@ -1,7 +1,7 @@
 import Container from "@/components/shared/Container";
 import Image from "next/image";
-import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi";
+import Button from "@/components/ui/Button";
 import { trendingDestinations } from "./data";
 
 const ToursHero = () => (
@@ -14,8 +14,8 @@ const ToursHero = () => (
           <h1 className="heading mt-4 max-w-[620px] !text-4xl sm:!text-5xl lg:!text-6xl">Find your perfect journey.</h1>
           <p className="body1 mt-5 max-w-[600px] text-white/75">Discover unforgettable destinations, curated experiences, and tours designed to turn your next trip into a story worth remembering.</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#discover" className="title4 inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-4 text-white hover:bg-white hover:text-accent">Search tours <FiArrowRight /></a>
-            <Link href="/destinations" className="title4 inline-flex items-center rounded-xl border border-white/35 px-5 py-4 text-white hover:bg-white hover:text-dark">Explore destinations</Link>
+            <Button href="#discover" rightIcon={<FiArrowRight />} size="lg" data-analytics-id="tours-hero-search">Search tours</Button>
+            <Button href="/destinations" variant="outline" size="lg" className="!border-white/35 !text-white hover:!bg-white hover:!text-dark">Explore destinations</Button>
           </div>
         </div>
         <div className="relative hidden aspect-square overflow-hidden rounded-[32px] border border-white/20 lg:block">

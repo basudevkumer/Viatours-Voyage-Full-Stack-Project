@@ -1,4 +1,6 @@
 import Image from "next/image";
+import RatingStars from "@/components/ui/RatingStars";
+import PriceTag from "@/components/ui/PriceTag";
 
 const TripCard = ({ image, days, location, title, rating, reviews, price }) => {
   return (
@@ -29,15 +31,8 @@ const TripCard = ({ image, days, location, title, rating, reviews, price }) => {
 
         {/* Rating & Price */}
         <div className="flex items-end justify-between">
-          <div className="flex items-center gap-1">
-            <span className="text-star-rating text-xs sm:text-sm">★</span>
-            <span className="body5 text-white font-medium">{rating}</span>
-            <span className="body5 text-white/60">({reviews})</span>
-          </div>
-          <div className="text-right">
-            <p className="body5 text-white/60">From</p>
-            <p className="title3 sm:title2 text-white">${price}</p>
-          </div>
+          <RatingStars rating={rating} reviewsCount={reviews} showCount size="sm" className="text-white [&>span:nth-child(2)]:!text-white [&>span:nth-child(3)]:!text-white" />
+          <PriceTag price={price} tone="dark" suffix="" size="md" className="justify-end text-right" />
         </div>
       </div>
 
