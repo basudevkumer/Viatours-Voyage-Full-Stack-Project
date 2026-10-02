@@ -9,6 +9,6 @@ export default function Button({ variant = "primary", size = "md", href, loading
   const inactive = disabled || loading;
   const classes = cn("title4 inline-flex min-h-11 items-center justify-center gap-2 rounded-[12px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2", variants[variant] || variants.primary, sizes[size] || sizes.md, fullWidth && "w-full", inactive && "cursor-not-allowed opacity-60", className);
   const content = <>{loading ? <span aria-hidden="true" className="h-4 w-4 animate-spin rounded-full border-2 border-current border-r-transparent motion-reduce:animate-none" /> : leftIcon}{children}{!loading && rightIcon}</>;
-  if (href) return <Link href={href} className={classes} aria-disabled={inactive || undefined} tabIndex={inactive ? -1 : rest.tabIndex} onClick={(event) => { if (inactive) event.preventDefault(); else onClick?.(event); }} {...rest}>{content}</Link>;
-  return <button type={type} className={classes} disabled={inactive} onClick={onClick} {...rest}>{content}</button>;
+  if (href) return <Link href={href} className={classes} aria-disabled={inactive || undefined} aria-busy={loading || undefined} tabIndex={inactive ? -1 : rest.tabIndex} onClick={(event) => { if (inactive) event.preventDefault(); else onClick?.(event); }} {...rest}>{content}</Link>;
+  return <button type={type} className={classes} disabled={inactive} aria-busy={loading || undefined} onClick={onClick} {...rest}>{content}</button>;
 }

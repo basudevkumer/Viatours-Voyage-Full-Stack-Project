@@ -7,7 +7,7 @@ import useLockBodyScroll from "@/hooks/useLockBodyScroll";
 export default function Modal({ open, onClose, title, children, className, overlayClassName, closeOnOverlay = true }) {
   const titleId = useId(); const panelRef = useRef(null);
   const closeRef = useRef(onClose);
-  closeRef.current = onClose;
+  useEffect(() => { closeRef.current = onClose; }, [onClose]);
   useLockBodyScroll(open);
   useEffect(() => {
     if (!open) return undefined;
