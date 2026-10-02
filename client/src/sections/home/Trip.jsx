@@ -4,14 +4,11 @@ import Container from "@/components/shared/Container";
 import React from "react";
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import CardCarousel from "@/components/shared/CardCarousel";
 
 // import required modules
-import { FreeMode, Autoplay } from "swiper/modules";
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
 import allImages from "@/components/helper/imageProvider";
 import TripCard from "@/components/shared/TripCard";
 
@@ -26,15 +23,11 @@ const Trip = () => {
         </h4>
       </Container>
       <div>
-        <Swiper
+        <CardCarousel
           slidesPerView={4}
           spaceBetween={30}
           freeMode={true}
-          modules={[FreeMode, Autoplay]}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
+          autoplay
            breakpoints={{
           '320': {
             slidesPerView: 1,
@@ -54,10 +47,11 @@ const Trip = () => {
           },
         }}
           className="mySwiper"
+          ariaLabel="Featured trips"
         >
           {featuredTrips.map((items, index) => {
             return (
-              <SwiperSlide key={index}>
+              <React.Fragment key={index}>
                 <TripCard
                   image={items.image.src}
                   price={items.price}
@@ -67,10 +61,10 @@ const Trip = () => {
                   rating={items.rating}
                   reviews={items.reviews}
                 />
-              </SwiperSlide>
+              </React.Fragment>
             );
           })}
-        </Swiper>
+        </CardCarousel>
       </div>
     </section>
   );

@@ -2,10 +2,7 @@
 
 import Container from "@/components/shared/Container";
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/free-mode";
+import CardCarousel from "@/components/shared/CardCarousel";
 import allImages from "@/components/helper/imageProvider";
 import BestCard from "@/components/shared/BestCard";
 
@@ -21,10 +18,9 @@ const BestPlace = () => {
         </h4>
 
         {/* Swiper */}
-        <Swiper
+        <CardCarousel
           freeMode={true}
-          modules={[FreeMode, Autoplay]}
-          autoplay={{ delay: 2500, disableOnInteraction: false }}
+          autoplay
           spaceBetween={12}
           slidesPerView={1.2}
           breakpoints={{
@@ -35,13 +31,14 @@ const BestPlace = () => {
             1280: { slidesPerView: 4,  spaceBetween: 30 },
           }}
           className="mySwiper"
+          ariaLabel="Best of New York tours"
         >
           {bestTrips.map((items, index) => (
-            <SwiperSlide key={index}>
+            <React.Fragment key={index}>
               <BestCard item={items} />
-            </SwiperSlide>
+            </React.Fragment>
           ))}
-        </Swiper>
+        </CardCarousel>
       </Container>
     </section>
   );

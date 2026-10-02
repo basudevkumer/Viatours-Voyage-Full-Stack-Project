@@ -1,7 +1,5 @@
-import React from "react";
+import { cn } from "@/lib/cn";
 
-const Container = ({ children }) => {
-  return <div className="mx-auto max-w-[1320px] px-4 ">{children}</div>;
-};
-
-export default Container;
+export default function Container({ children, className }) {
+  return <div className={cn("mx-auto max-w-[1320px] px-4", className)}>{children}</div>;
+}

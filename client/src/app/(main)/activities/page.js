@@ -8,8 +8,9 @@ import ExperiencesCTA from "@/sections/activities/ExperiencesCTA";
 import ExperiencesHero from "@/sections/activities/ExperiencesHero";
 import LocalExperiences from "@/sections/activities/LocalExperiences";
 import PopularExperiences from "@/sections/activities/PopularExperiences";
+import Reveal from "@/components/animation/Reveal";
 
-const Activities = () => <main className="bg-bg-grey">
+const Activities = () => <Reveal as="main" className="bg-bg-grey" selector="main > section">
   <ExperiencesHero />
   <ExperienceCategories />
   <ExperienceDiscovery />
@@ -20,6 +21,6 @@ const Activities = () => <main className="bg-bg-grey">
   <LocalExperiences />
   <ExperienceFAQ />
   <ExperiencesCTA />
-</main>;
+</Reveal>;
 
 export default Activities;

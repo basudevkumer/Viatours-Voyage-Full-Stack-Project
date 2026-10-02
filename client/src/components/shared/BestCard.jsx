@@ -1,26 +1,17 @@
-import Image from "next/image";
 import RatingStars from "@/components/ui/RatingStars";
 import PriceTag from "@/components/ui/PriceTag";
+import Card from "@/components/shared/Card";
+import CardBody from "@/components/shared/CardBody";
+import CardMedia from "@/components/shared/CardMedia";
 
 
 const BestCard = ({ item }) => {
   const { image, location, title, rating, reviews, days, price } = item;
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300 group w-full">
-
-      {/* Image */}
-      <div className="relative w-full h-[160px] sm:h-[190px] lg:h-[220px] overflow-hidden">
-        <Image
-          src={image}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          alt={title ?? "Trip image"}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="p-3 sm:p-4">
+    <Card className="w-full cursor-pointer transition-shadow duration-300 hover:shadow-lg">
+      <CardMedia src={image} alt={title ?? "Trip image"} aspect="h-[160px] sm:h-[190px] lg:h-[220px]" />
+      <CardBody className="p-3 sm:p-4">
 
         <p className="body5 text-text-secondary mb-1 truncate">{location}</p>
 
@@ -41,8 +32,8 @@ const BestCard = ({ item }) => {
           <PriceTag price={price} size="sm" suffix="" className="justify-end" />
         </div>
 
-      </div>
-    </div>
+      </CardBody>
+    </Card>
   );
 };
 

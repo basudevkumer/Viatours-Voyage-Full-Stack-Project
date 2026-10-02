@@ -424,6 +424,7 @@ const allImages = {
       price: "149.00",
     },
   ],
+  // TODO(api): replace these sample article cards, dates, and authors with published content.
   traveItems: [
     {
       id: 1,

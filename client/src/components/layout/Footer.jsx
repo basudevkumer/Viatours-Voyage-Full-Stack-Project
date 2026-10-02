@@ -4,6 +4,7 @@ import { footerData } from "@/components/helper/projectsData";
 import Link from "next/link";
 import allImages from "@/components/helper/imageProvider";
 import Image from "next/image";
+import NewsletterForm from "@/components/shared/NewsletterForm";
 
 const Footer = () => {
   const { paymentArry } = allImages;
@@ -86,19 +87,7 @@ const Footer = () => {
                 Subscribe to the free newsletter and stay up to date
               </p>
 
-              {/* Email Input */}
-              <div className="p-3 sm:p-4 lg:p-5 flex items-center bg-white rounded-[10px] sm:rounded-[12px] gap-2">
-                <label className="sr-only" htmlFor="footer-email">Your email address</label>
-                <input
-                  id="footer-email"
-                  type="email"
-                  className="w-full body4 text-text-primary placeholder:text-text-placeholder bg-transparent focus:outline-none"
-                  placeholder="Your email address"
-                />
-                <button className="shrink-0 bg-primary text-white title4 px-4 py-2 rounded-full hover:opacity-90 transition duration-300">
-                  Send
-                </button>
-              </div>
+              <NewsletterForm layout="stacked" submitLabel="Send" />
 
               {/* Mobile Apps */}
               <p className="title2 sm:title1 !font-medium mt-6 sm:mt-[30px] mb-2 sm:mb-[10px] text-dark">

@@ -1,4 +1,5 @@
 import Container from "@/components/shared/Container";
+import SectionHeading from "@/components/shared/SectionHeading";
 import Button from "@/components/ui/Button";
 import {
   FiArrowDown,
@@ -21,12 +22,7 @@ const BuildYourDay = () => (
   <section className="py-14 sm:py-20">
     <Container>
       <div className="mx-auto max-w-[900px] text-center">
-        <p className="caption text-accent">PLAN THE FEELING</p>
-        <h2 className="heading mt-3 text-dark">Build your perfect day</h2>
-        <p className="body3 mx-auto mt-3 max-w-[560px] text-text-secondary">
-          A lightweight way to imagine your itinerary before you choose the
-          details.
-        </p>
+        <SectionHeading align="center" eyebrow="PLAN THE FEELING" title="Build your perfect day" text="A lightweight way to imagine your itinerary before you choose the details." className="mb-0" />
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {moments.map(([Icon, time, text], index) => (
             <div

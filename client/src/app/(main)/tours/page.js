@@ -8,9 +8,10 @@ import SpecialDeals from "@/sections/tours/SpecialDeals";
 import TravelConfidence from "@/sections/tours/TravelConfidence";
 import TravelInspiration from "@/sections/tours/TravelInspiration";
 import TravelStyles from "@/sections/tours/TravelStyles";
+import Reveal from "@/components/animation/Reveal";
 
 const Tours = () => (
-  <main className="bg-bg-grey">
+  <Reveal as="main" className="bg-bg-grey" selector="main > section">
     <ToursHero />
     <TourDiscovery />
     <PopularTours />
@@ -21,7 +22,7 @@ const Tours = () => (
     <TravelInspiration />
     <FAQ />
     <ToursFinalCTA />
-  </main>
+  </Reveal>
 );
 
 export default Tours;

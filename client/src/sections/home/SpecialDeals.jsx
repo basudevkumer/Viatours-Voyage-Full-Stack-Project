@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/shared/Container";
 import allImages from "@/components/helper/imageProvider";
+import SectionHeading from "@/components/shared/SectionHeading";
 
 const dealItems = [
   { image: "Bali", title: "A slower side of Bali", meta: "Temples, terraces and time to wander", href: "/tours" },
@@ -14,10 +15,7 @@ const SpecialDeals = () => {
   return (
     <section className="bg-dark py-16 sm:py-20 lg:py-28">
       <Container>
-        <div className="mb-8 flex items-end justify-between gap-5 sm:mb-10">
-          <div><p className="caption text-accent">SEASONAL INSPIRATION</p><h2 className="heading mt-3 text-white">A reason to start planning</h2></div>
-          <p className="body4 hidden max-w-[280px] text-white/70 sm:block">Thoughtful ideas for your next escape, ready when you are.</p>
-        </div>
+        <SectionHeading eyebrow="SEASONAL INSPIRATION" title="A reason to start planning" text="Thoughtful ideas for your next escape, ready when you are." tone="light" />
         <div className="grid gap-5 md:grid-cols-2">
           {dealItems.map((item) => (
             <Link key={item.title} href={item.href} className="group relative min-h-[300px] overflow-hidden rounded-[24px] sm:min-h-[380px]">

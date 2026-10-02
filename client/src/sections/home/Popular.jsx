@@ -2,10 +2,7 @@
 import Container from "@/components/shared/Container";
 import PopularCard from "@/components/shared/PopularCard";
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/free-mode";
+import CardCarousel from "@/components/shared/CardCarousel";
 import allImages from "@/components/helper/imageProvider";
 
 const Popular = () => {
@@ -25,10 +22,9 @@ const Popular = () => {
         </div>
 
         {/* Swiper */}
-        <Swiper
+        <CardCarousel
           freeMode={true}
-          modules={[FreeMode, Autoplay]}
-          autoplay={{ delay: 2500, disableOnInteraction: false }}
+          autoplay
           spaceBetween={12}
           slidesPerView={1.8}
           breakpoints={{
@@ -39,17 +35,18 @@ const Popular = () => {
             1280: { slidesPerView: 6,  spaceBetween: 30 },
           }}
           className="mySwiper"
+          ariaLabel="Popular things to do"
         >
           {popularThings.map((items, index) => (
-            <SwiperSlide key={index}>
+            <React.Fragment key={index}>
               <PopularCard
                 img={items.image}
                 title={items.title}
                 num={items.count}
               />
-            </SwiperSlide>
+            </React.Fragment>
           ))}
-        </Swiper>
+        </CardCarousel>
       </Container>
     </section>
   );

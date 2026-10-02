@@ -1,10 +1,7 @@
 "use client";
 import Container from "@/components/shared/Container";
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/free-mode";
+import CardCarousel from "@/components/shared/CardCarousel";
 import TravelCard from "@/components/shared/TravelCard";
 import allImages from "@/components/helper/imageProvider";
 
@@ -26,10 +23,9 @@ const Travel = () => {
         </div>
 
         {/* Swiper */}
-        <Swiper
+        <CardCarousel
           freeMode={true}
-          modules={[FreeMode, Autoplay]}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          autoplay
           spaceBetween={12}
           slidesPerView={1.1}
           breakpoints={{
@@ -40,13 +36,14 @@ const Travel = () => {
             1280: { slidesPerView: 3,  spaceBetween: 30 },
           }}
           className="mySwiper"
+          ariaLabel="Travel articles"
         >
           {traveItems.map((items, index) => (
-            <SwiperSlide key={index}>
+            <React.Fragment key={index}>
               <TravelCard item={items} />
-            </SwiperSlide>
+            </React.Fragment>
           ))}
-        </Swiper>
+        </CardCarousel>
 
       </Container>
     </section>

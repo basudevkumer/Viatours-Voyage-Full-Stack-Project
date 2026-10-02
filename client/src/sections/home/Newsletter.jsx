@@ -1,43 +1,13 @@
-import { FiArrowRight } from "react-icons/fi";
 import Container from "@/components/shared/Container";
-import Button from "@/components/ui/Button";
+import NewsletterForm from "@/components/shared/NewsletterForm";
+import SectionHeading from "@/components/shared/SectionHeading";
 
 const Newsletter = () => (
   <section className="bg-bg-grey py-14 sm:py-16 lg:py-20">
     <Container>
       <div className="flex flex-col gap-6 rounded-[24px] bg-white p-6 sm:p-8 lg:flex-row lg:items-center lg:justify-between lg:p-12">
-        <div>
-          <p className="caption text-accent">TRAVEL INSPIRATION</p>
-          <h2 className="title1 mt-3 text-dark sm:text-2xl">
-            Get ideas for your next adventure.
-          </h2>
-          <p className="body4 mt-2 max-w-[500px] text-text-secondary">
-            A little inspiration, useful guides and new ways to see the world —
-            sent occasionally.
-          </p>
-        </div>
-        <form action="/contact" method="get" className="flex w-full max-w-[470px] gap-2">
-          <label htmlFor="travel-email" className="sr-only">
-            Email address
-          </label>
-          <input
-            id="travel-email"
-            name="email"
-            type="email"
-            required
-            placeholder="Your email address"
-            className="body4 min-w-0 flex-1 rounded-[12px] border border-gray5 bg-bg-field px-4 py-3 text-dark placeholder:text-text-secondary focus:border-accent focus:outline-none"
-          />
-          <Button
-            type="submit"
-            aria-label="Get travel ideas"
-            rightIcon={<FiArrowRight aria-hidden="true" />}
-            className="shrink-0 px-4 sm:px-5"
-            data-analytics-id="newsletter-submit"
-          >
-            Get travel ideas
-          </Button>
-        </form>
+        <SectionHeading eyebrow="TRAVEL INSPIRATION" title="Get ideas for your next adventure." text="A little inspiration, useful guides and new ways to see the world — sent occasionally." className="mb-0" />
+        <NewsletterForm layout="inline" className="w-full max-w-[470px]" submitLabel="Get travel ideas" />
       </div>
     </Container>
   </section>
