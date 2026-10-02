@@ -1,5 +1,7 @@
 import allImages from "@/components/helper/imageProvider";
 
+// TODO(api): Tour prices, review totals, ratings, and curated text below are mock data pending verified API records.
+
 const { featuredTrips, trendingDestinations } = allImages;
 
 export const tours = featuredTrips.map((tour, index) => ({

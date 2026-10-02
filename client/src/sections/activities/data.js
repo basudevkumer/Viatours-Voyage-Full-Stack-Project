@@ -1,5 +1,7 @@
 import allImages from "@/components/helper/imageProvider";
 
+// TODO(api): Experience prices, review totals, ratings, counts, and descriptions below are mock data pending verified API records.
+
 const { popularThings, trendingDestinations } = allImages;
 
 export const experiences = [

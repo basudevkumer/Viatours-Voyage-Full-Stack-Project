@@ -6,11 +6,10 @@ const navLinks = [
   { id: 1, label: "DESTINATIONS", path: "/destinations" },
   { id: 2, label: "TOURS", path: "/tours" },
   { id: 3, label: "EXPERIENCES", path: "/activities" },
-  { id: 4, label: "TRAVEL GUIDE", path: "/pages" },
+  { id: 4, label: "TRAVEL GUIDE", path: "/travel-guide" },
   // TODO(routes): Add a dedicated deals page before linking this item.
   { id: 5, label: "DEALS", path: "#" },
-  // TODO(routes): Add an about page before linking this item.
-  { id: 6, label: "ABOUT", path: "#" },
+  { id: 6, label: "ABOUT", path: "/about" },
   { id: 7, label: "CONTACT", path: "/contact" },
 ];
 
@@ -19,12 +18,11 @@ export const footerData = [
     id: 1,
     title: "Company",
     links: [
-      // TODO(routes): Add an about page before linking this item.
-      { label: "About Us", path: "#" },
+      { label: "About Us", path: "/about" },
       // TODO(routes): Add a reviews page before linking this item.
       { label: "Viatours Reviews", path: "#" },
       { label: "Contact Us", path: "/contact" },
-      { label: "Travel Guides", path: "/pages" },
+      { label: "Travel Guides", path: "/travel-guide" },
       // TODO(routes): Add a data policy page before linking this item.
       { label: "Data Policy", path: "#" },
       // TODO(routes): Add a cookie policy page before linking this item.

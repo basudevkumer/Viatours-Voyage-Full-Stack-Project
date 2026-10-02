@@ -2,12 +2,10 @@ import React from "react";
 import Container from "../shared/Container";
 import { footerData } from "@/components/helper/projectsData";
 import Link from "next/link";
-import allImages from "@/components/helper/imageProvider";
-import Image from "next/image";
 import NewsletterForm from "@/components/shared/NewsletterForm";
+import PaymentMethods from "@/components/shared/PaymentMethods";
 
 const Footer = () => {
-  const { paymentArry } = allImages;
   return (
     <footer>
       {/* ─── Main Footer Body ─── */}
@@ -113,18 +111,7 @@ const Footer = () => {
             <p className="text-dark body4 text-center sm:text-left">
               © Copyright Viatours {new Date().getFullYear()}
             </p>
-            <div className="flex items-center flex-wrap justify-center gap-1 sm:gap-0">
-              {paymentArry.map((item) => (
-                <Image
-                  key={item.id}
-                  src={item.img}
-                  alt={item.alt ?? "Payment method"}
-                  width={80}
-                  height={25}
-                  className="w-[60px] sm:w-[70px] lg:w-[80px] h-[22px] sm:h-[25px] object-contain"
-                />
-              ))}
-            </div>
+            <PaymentMethods />
           </div>
         </Container>
       </div>

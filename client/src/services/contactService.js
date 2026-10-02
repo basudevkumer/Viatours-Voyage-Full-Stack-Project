@@ -1,2 +1,2 @@
 // TODO(api): Replace this acknowledgement with POST /contact.
-export async function submitContact(payload) { return { success: true, message: "Your message is ready to send when contact service is connected.", data: payload }; }
+export async function submitContact() { return { success: false, message: "Contact form delivery is not connected yet. Email hi@viatours.com for assistance.", errors: [] }; }

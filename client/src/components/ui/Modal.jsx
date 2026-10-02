@@ -3,6 +3,8 @@
 import { useEffect, useId, useRef } from "react";
 import { cn } from "@/lib/cn";
 import useLockBodyScroll from "@/hooks/useLockBodyScroll";
+import IconButton from "@/components/ui/IconButton";
+import { FiX } from "react-icons/fi";
 
 export default function Modal({ open, onClose, title, children, className, overlayClassName, closeOnOverlay = true }) {
   const titleId = useId(); const panelRef = useRef(null);
@@ -30,7 +32,7 @@ export default function Modal({ open, onClose, title, children, className, overl
   return <div className={cn("fixed inset-0 z-[70] flex items-center justify-center p-4", overlayClassName)} onMouseDown={(event) => { if (closeOnOverlay && !panelRef.current?.contains(event.target)) onClose?.(); }}>
     <div aria-hidden="true" className="absolute inset-0 bg-dark/50" />
     <section ref={panelRef} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1} className={cn("relative z-10 w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl", className)}>
-      <h2 id={titleId} className="title1 text-dark">{title}</h2>{children}
+      <div className="mb-4 flex items-start justify-between gap-4"><h2 id={titleId} className="title1 text-dark">{title}</h2><IconButton icon={<FiX aria-hidden="true" />} label="Close dialog" variant="ghost" onClick={onClose} className="-mr-2 -mt-2" /></div>{children}
     </section>
   </div>;
 }
