@@ -1,6 +1,6 @@
 import allImages from "@/components/helper/imageProvider";
 
-const { featuredTrips, trendingDestinations, travelerArr } = allImages;
+const { featuredTrips, trendingDestinations } = allImages;
 
 export const tours = featuredTrips.map((tour, index) => ({
   ...tour,
@@ -9,6 +9,7 @@ export const tours = featuredTrips.map((tour, index) => ({
   originalPrice: index % 3 === 0 ? Number(tour.price) + 45 : null,
 }));
 
+// TODO(api): These are mock figures and must not be presented as verified claims.
 export const trustItems = [
   ["10K+", "Happy travelers"],
   ["500+", "Curated tours"],
@@ -31,12 +32,6 @@ export const benefits = [
   ["Secure booking", "Clear information and a simple booking journey from start to finish."],
   ["Support when you need it", "Helpful humans are here before, during and after your trip."],
 ];
-
-export const reviews = [
-  "A beautifully paced trip from start to finish. Every detail felt considered.",
-  "The local guide made the whole experience feel personal, easy and memorable.",
-  "Finding and comparing the right tour was refreshingly simple.",
-].map((quote, index) => ({ quote, person: travelerArr[index] }));
 
 export const faqs = [
   ["How do I book a tour?", "Choose a tour, review the details, select your preferred date and follow the secure booking steps. Our team is here if you need a hand."],

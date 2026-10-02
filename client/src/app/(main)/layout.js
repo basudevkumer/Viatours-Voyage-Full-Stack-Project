@@ -4,7 +4,7 @@ import React from "react";
 
 const HomeLayout = ({ children }) => {
   return (
-    <div className="relaive">
+    <div className="relative">
       <Navbar />
       {children}
       <Footer />

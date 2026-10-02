@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="bg-commonbg rounded-[16px] sm:rounded-[20px] lg:rounded-[24px] mx-3 sm:mx-4 lg:mx-[30px]">
         <Container>
           {/* ─── Top CTA Bar ─── */}
-          <div className="pt-10 sm:pt-14 lg:pt-[95px] pb-6 sm:pb-8 lg:pb-[64px] flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6 border-b border-[#eb652b42]">
+          <div className="pt-10 sm:pt-14 lg:pt-[95px] pb-6 sm:pb-8 lg:pb-[64px] flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6 border-b border-accent/25">
             <p className="title2 sm:title1 !font-medium text-dark">
               Speak to our expert at{" "}
               <span className="text-accent block sm:inline">1-800-453-6744</span>
@@ -88,7 +88,9 @@ const Footer = () => {
 
               {/* Email Input */}
               <div className="p-3 sm:p-4 lg:p-5 flex items-center bg-white rounded-[10px] sm:rounded-[12px] gap-2">
+                <label className="sr-only" htmlFor="footer-email">Your email address</label>
                 <input
+                  id="footer-email"
                   type="email"
                   className="w-full body4 text-text-primary placeholder:text-text-placeholder bg-transparent focus:outline-none"
                   placeholder="Your email address"
@@ -120,7 +122,7 @@ const Footer = () => {
         <Container>
           <div className="py-4 sm:py-6 flex flex-col-reverse sm:flex-row items-center justify-between gap-3 sm:gap-0">
             <p className="text-dark body4 text-center sm:text-left">
-              © Copyright Viatours 2024
+              © Copyright Viatours {new Date().getFullYear()}
             </p>
             <div className="flex items-center flex-wrap justify-center gap-1 sm:gap-0">
               {paymentArry.map((item) => (

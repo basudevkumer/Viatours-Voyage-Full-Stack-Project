@@ -10,6 +10,8 @@
   --color-primary-end: #5151c6;
   --color-dark: #05073c;
   --color-accent: #eb662b;
+  --color-star-rating: #f5b544;
+  --color-hero-end: #142258;
 
   /* Semantic backgrounds */
   --color-bg-white: #ffffff;
@@ -44,6 +46,10 @@
 }
 
 @layer utilities {
+  .hero-gradient {
+    background-image: radial-gradient(circle at 85% 20%, color-mix(in srgb, var(--color-accent) 32%, transparent), transparent 35%), linear-gradient(120deg, var(--color-dark) 5%, var(--color-hero-end) 100%);
+  }
+
   .bg-primary {
     background: linear-gradient(to left, #888bf4 0%, #5151c6 100%);
   }

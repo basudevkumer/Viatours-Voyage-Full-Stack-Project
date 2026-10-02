@@ -7,21 +7,17 @@ import ToursHero from "@/sections/tours/ToursHero";
 import SpecialDeals from "@/sections/tours/SpecialDeals";
 import TravelConfidence from "@/sections/tours/TravelConfidence";
 import TravelInspiration from "@/sections/tours/TravelInspiration";
-import TravelerReviews from "@/sections/tours/TravelerReviews";
 import TravelStyles from "@/sections/tours/TravelStyles";
-import TrustStats from "@/sections/tours/TrustStats";
 
 const Tours = () => (
   <main className="bg-bg-grey">
     <ToursHero />
-    <TrustStats />
     <TourDiscovery />
     <PopularTours />
     <TravelStyles />
     <DestinationDiscovery />
     <SpecialDeals />
     <TravelConfidence />
-    <TravelerReviews />
     <TravelInspiration />
     <FAQ />
     <ToursFinalCTA />

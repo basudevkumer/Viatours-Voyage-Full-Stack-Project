@@ -6,7 +6,7 @@ import { trendingDestinations } from "./data";
 
 const ToursHero = () => (
   <section className="relative overflow-hidden bg-dark pt-32 text-white sm:pt-36 lg:pt-40">
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_20%,rgba(235,102,43,.32),transparent_35%),linear-gradient(120deg,#05073c_5%,#142258_100%)]" />
+    <div className="hero-gradient absolute inset-0" />
     <Container>
       <div className="relative grid items-center gap-10 pb-16 lg:grid-cols-[1fr_420px] lg:pb-24">
         <div className="max-w-[680px]">

@@ -7,7 +7,7 @@ import { FreeMode, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import allImages from "@/components/helper/imageProvider";
-import BestCard from "@/components/shared/BestCart";
+import BestCard from "@/components/shared/BestCard";
 
 const BestPlace = () => {
   const { bestTrips } = allImages;

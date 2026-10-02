@@ -1,7 +1,57 @@
 import Container from "@/components/shared/Container";
 import Link from "next/link";
-import { FiArrowDown, FiArrowRight, FiCoffee, FiSun, FiMoon } from "react-icons/fi";
+import {
+  FiArrowDown,
+  FiArrowRight,
+  FiCoffee,
+  FiSun,
+  FiMoon,
+} from "react-icons/fi";
 
-const moments = [[FiCoffee, "Morning", "Start with local breakfast and a neighborhood story."], [FiSun, "Afternoon", "Choose a hands-on activity, boat day or city walk."], [FiMoon, "Evening", "End with sunset views, a food walk or a cultural performance."]];
-const BuildYourDay = () => <section className="py-14 sm:py-20"><Container><div className="mx-auto max-w-[900px] text-center"><p className="caption text-accent">PLAN THE FEELING</p><h2 className="heading mt-3 text-dark">Build your perfect day</h2><p className="body3 mx-auto mt-3 max-w-[560px] text-text-secondary">A lightweight way to imagine your itinerary before you choose the details.</p><div className="mt-10 grid gap-4 md:grid-cols-3">{moments.map(([Icon, time, text], index) => <div key={time} className="relative rounded-2xl border border-gray6 bg-white p-6 text-left"><span className="flex h-12 w-12 items-center justify-center rounded-xl bg-commonbg text-xl text-accent"><Icon /></span><p className="caption mt-5 text-accent">{time}</p><p className="body3 mt-2 text-dark">{text}</p>{index < 2 && <FiArrowDown className="absolute -bottom-6 left-1/2 z-10 -translate-x-1/2 text-accent md:-right-6 md:left-auto md:top-1/2 md:translate-x-0 md:-translate-y-1/2 md:rotate-[-90deg]" />}</div>)}</div><Link href="#discover" className="title4 mt-8 inline-flex items-center gap-2 rounded-xl bg-dark px-5 py-4 text-white hover:bg-accent">Explore experiences <FiArrowRight /></Link></div></Container></section>;
+const moments = [
+  [FiCoffee, "Morning", "Start with local breakfast and a neighborhood story."],
+  [FiSun, "Afternoon", "Choose a hands-on activity, boat day or city walk."],
+  [
+    FiMoon,
+    "Evening",
+    "End with sunset views, a food walk or a cultural performance.",
+  ],
+];
+const BuildYourDay = () => (
+  <section className="py-14 sm:py-20">
+    <Container>
+      <div className="mx-auto max-w-[900px] text-center">
+        <p className="caption text-accent">PLAN THE FEELING</p>
+        <h2 className="heading mt-3 text-dark">Build your perfect day</h2>
+        <p className="body3 mx-auto mt-3 max-w-[560px] text-text-secondary">
+          A lightweight way to imagine your itinerary before you choose the
+          details.
+        </p>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {moments.map(([Icon, time, text], index) => (
+            <div
+              key={time}
+              className="relative rounded-2xl border border-gray6 bg-white p-6 text-left"
+            >
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-commonbg text-xl text-accent">
+                <Icon />
+              </span>
+              <p className="caption mt-5 text-accent">{time}</p>
+              <p className="body3 mt-2 text-dark">{text}</p>
+              {index < 2 && (
+                <FiArrowDown className="absolute -bottom-6 left-1/2 z-10 -translate-x-1/2 text-accent md:-right-6 md:left-auto md:top-1/2 md:translate-x-0 md:-translate-y-1/2 md:rotate-[-90deg]" />
+              )}
+            </div>
+          ))}
+        </div>
+        <Link
+          href="#discover"
+          className="title4 mt-8 inline-flex items-center gap-2 rounded-xl bg-dark px-5 py-4 text-white hover:bg-accent"
+        >
+          Explore experiences <FiArrowRight />
+        </Link>
+      </div>
+    </Container>
+  </section>
+);
 export default BuildYourDay;

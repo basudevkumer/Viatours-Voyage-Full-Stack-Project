@@ -1,11 +1,11 @@
 import React from "react";
 
-const Button = ({ childern }) => {
+const Button = ({ children }) => {
   return (
     <button
       className={`px-9 py-5.5 cursor-pointer title4 rounded-[12px] text-white border`}
     >
-      {childern}
+      {children}
     </button>
   );
 };

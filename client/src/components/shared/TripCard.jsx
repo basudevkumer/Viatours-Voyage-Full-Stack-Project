@@ -13,7 +13,7 @@ const TripCard = ({ image, days, location, title, rating, reviews, price }) => {
       />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#05073C]/75 from-20% via-[#05073C]/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-dark/75 from-20% via-dark/20 to-transparent" />
 
       {/* Days Badge */}
       <span className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-white/20 backdrop-blur-sm text-white body5 px-2.5 sm:px-3 py-1 rounded-full">
@@ -30,7 +30,7 @@ const TripCard = ({ image, days, location, title, rating, reviews, price }) => {
         {/* Rating & Price */}
         <div className="flex items-end justify-between">
           <div className="flex items-center gap-1">
-            <span className="text-yellow-400 text-xs sm:text-sm">★</span>
+            <span className="text-star-rating text-xs sm:text-sm">★</span>
             <span className="body5 text-white font-medium">{rating}</span>
             <span className="body5 text-white/60">({reviews})</span>
           </div>

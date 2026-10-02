@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
-import TravelCard from "@/components/shared/TeavelCard";
+import TravelCard from "@/components/shared/TravelCard";
 import allImages from "@/components/helper/imageProvider";
 
 const Travel = () => {

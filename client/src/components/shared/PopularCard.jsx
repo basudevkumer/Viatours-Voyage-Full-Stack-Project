@@ -5,7 +5,7 @@ const PopularCard = ({ title, num, img }) => {
     <div className="relative overflow-hidden rounded-[12px] w-full h-[160px] sm:h-[185px] lg:h-[220px] cursor-pointer group">
 
       {/* Overlay */}
-      <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#05073C]/70 from-10% via-[#05073C]/50 via-40% to-transparent" />
+      <div className="absolute inset-0 z-20 bg-gradient-to-t from-dark/70 from-10% via-dark/50 via-40% to-transparent" />
 
       {/* Image */}
       <Image

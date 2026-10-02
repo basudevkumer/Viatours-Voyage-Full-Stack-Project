@@ -7,8 +7,10 @@ const navLinks = [
   { id: 2, label: "TOURS", path: "/tours" },
   { id: 3, label: "EXPERIENCES", path: "/activities" },
   { id: 4, label: "TRAVEL GUIDE", path: "/pages" },
-  { id: 5, label: "DEALS", path: "/tours" },
-  { id: 6, label: "ABOUT", path: "/pages" },
+  // TODO(routes): Add a dedicated deals page before linking this item.
+  { id: 5, label: "DEALS", path: "#" },
+  // TODO(routes): Add an about page before linking this item.
+  { id: 6, label: "ABOUT", path: "#" },
   { id: 7, label: "CONTACT", path: "/contact" },
 ];
 
@@ -17,24 +19,33 @@ export const footerData = [
     id: 1,
     title: "Company",
     links: [
-      { label: "About Us", path: "" },
-      { label: "Tourz Reviews", path: "" },
-      { label: "Contact Us", path: "" },
-      { label: "Travel Guides", path: "" },
-      { label: "Data Policy", path: "" },
-      { label: "Cookie Policy", path: "" },
-      { label: "Legal", path: "" },
-      { label: "Sitemap", path: "" },
+      // TODO(routes): Add an about page before linking this item.
+      { label: "About Us", path: "#" },
+      // TODO(routes): Add a reviews page before linking this item.
+      { label: "Viatours Reviews", path: "#" },
+      { label: "Contact Us", path: "/contact" },
+      { label: "Travel Guides", path: "/pages" },
+      // TODO(routes): Add a data policy page before linking this item.
+      { label: "Data Policy", path: "#" },
+      // TODO(routes): Add a cookie policy page before linking this item.
+      { label: "Cookie Policy", path: "#" },
+      // TODO(routes): Add a legal page before linking this item.
+      { label: "Legal", path: "#" },
+      // TODO(routes): Add a sitemap page before linking this item.
+      { label: "Sitemap", path: "#" },
     ],
   },
   {
     id: 2,
     title: "Support",
     links: [
-      { label: "Get in Touch", path: "" },
-      { label: "Help center", path: "" },
-      { label: "Live chat", path: "" },
-      { label: "How it works", path: "" },
+      { label: "Get in Touch", path: "/contact" },
+      // TODO(routes): Add a help center page before linking this item.
+      { label: "Help center", path: "#" },
+      // TODO(routes): Add live chat before linking this item.
+      { label: "Live chat", path: "#" },
+      // TODO(routes): Add a how it works page before linking this item.
+      { label: "How it works", path: "#" },
     ],
   },
 ];
