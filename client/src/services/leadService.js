@@ -17,10 +17,16 @@ export async function submitTripInquiry(leadData) {
 
   if (type === "group") {
     confirmationMessage = "Thank you! Our group travel coordinator has received your request and will assemble a tailored group proposal within 24 hours.";
+  } else if (type === "private") {
+    confirmationMessage = "Thank you! Our private experiences desk has received your request and will provide custom pricing within 24 hours.";
   } else if (type === "call") {
     confirmationMessage = "Thank you! Your consultation request has been received. Our specialist will confirm your call slot via email.";
   } else if (type === "question") {
     confirmationMessage = "Thank you! Your inquiry has been sent to our local tour specialist. We will reply via email within 24 hours.";
+  } else if (type === "dayplan") {
+    confirmationMessage = "Thank you! We received your day plan. Our local coordinator will verify activity timing and email your synchronized schedule within 24 hours.";
+  } else if (type === "partner") {
+    confirmationMessage = "Thank you for your interest in hosting with Viatours! Our regional partner team will review your listing request and reach out within 2 business days.";
   }
 
   return {

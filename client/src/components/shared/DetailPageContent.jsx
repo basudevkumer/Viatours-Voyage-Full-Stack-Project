@@ -55,11 +55,20 @@ export default function DetailPageContent({ item, itemType = "tour", relatedItem
           value: item.duration || `${item.days} days`,
         }
       : null,
-    item.groupType || item.group
+    item.timeOfDay
+      ? {
+          icon: FiClock,
+          label: "Time of day",
+          value:
+            item.timeOfDay.charAt(0).toUpperCase() +
+            item.timeOfDay.slice(1).replace("-", " "),
+        }
+      : null,
+    item.groupType || item.group || (item.groupSizeMax ? `Max ${item.groupSizeMax} guests` : null)
       ? {
           icon: FiUsers,
           label: "Group type",
-          value: item.groupType || item.group,
+          value: item.groupType || item.group || `Max ${item.groupSizeMax} guests`,
         }
       : null,
     item.languages?.length
@@ -67,6 +76,13 @@ export default function DetailPageContent({ item, itemType = "tour", relatedItem
           icon: FiGlobe,
           label: "Languages",
           value: item.languages.join(", "),
+        }
+      : null,
+    item.ticketType || (item.features?.includes("mobileTicket") ? "Mobile ticket accepted" : null)
+      ? {
+          icon: FiCheckCircle,
+          label: "Ticket type",
+          value: item.ticketType || "Mobile ticket accepted",
         }
       : null,
     item.difficulty
@@ -139,6 +155,21 @@ export default function DetailPageContent({ item, itemType = "tour", relatedItem
                   {item.groupType}
                 </Badge>
               )}
+              {item.features?.includes("freeCancellation") && (
+                <Badge variant="light" className="text-xs !text-success border-success/30">
+                  Free cancellation
+                </Badge>
+              )}
+              {item.features?.includes("instantConfirmation") && (
+                <Badge variant="light" className="text-xs">
+                  Instant confirmation
+                </Badge>
+              )}
+              {item.features?.includes("hotelPickup") && (
+                <Badge variant="light" className="text-xs">
+                  Hotel pickup
+                </Badge>
+              )}
             </div>
 
             <h1 className="title1 text-dark sm:heading max-w-4xl">{item.title}</h1>
@@ -200,7 +231,7 @@ export default function DetailPageContent({ item, itemType = "tour", relatedItem
             {item.highlights && item.highlights.length > 0 && (
               <section className="rounded-2xl border border-gray6 bg-white p-6 sm:p-8" aria-labelledby="tour-highlights-title">
                 <h2 id="tour-highlights-title" className="title2 text-dark mb-4">
-                  Tour highlights
+                  {isExperience ? "Experience highlights" : "Tour highlights"}
                 </h2>
                 <ul className="grid gap-3 sm:grid-cols-2">
                   {item.highlights.map((highlight, idx) => (
@@ -217,7 +248,7 @@ export default function DetailPageContent({ item, itemType = "tour", relatedItem
             {item.description && (
               <section className="rounded-2xl border border-gray6 bg-white p-6 sm:p-8" aria-labelledby="tour-overview-title">
                 <h2 id="tour-overview-title" className="title2 text-dark mb-3">
-                  Overview & experience
+                  {isExperience ? "Overview & details" : "Overview & experience"}
                 </h2>
                 <p className="body3 text-text-secondary leading-relaxed whitespace-pre-line">
                   {item.description}
@@ -287,20 +318,32 @@ export default function DetailPageContent({ item, itemType = "tour", relatedItem
                   MORE INSPIRATION
                 </span>
                 <h2 id="related-tours-title" className="title1 text-dark">
-                  Other journeys you might enjoy
+                  {isExperience ? "Other activities you might enjoy" : "Other journeys you might enjoy"}
                 </h2>
               </div>
-              {item.destination && (
-                <Button
-                  href={`/destinations/${destinationSlug}`}
-                  variant="outline"
-                  size="sm"
-                  rightIcon={<FiArrowRight aria-hidden="true" />}
-                  data-analytics-id="tour-detail-view-destination"
-                >
-                  Explore all {item.destination} guides & tours
-                </Button>
-              )}
+              <div className="flex flex-wrap items-center gap-2">
+                {isExperience && item.destination && (
+                  <Button
+                    href={`/tours?destination=${encodeURIComponent(item.destination)}`}
+                    variant="outline"
+                    size="sm"
+                    data-analytics-id="exp-detail-view-tours"
+                  >
+                    View {item.destination} tours
+                  </Button>
+                )}
+                {item.destination && (
+                  <Button
+                    href={`/destinations/${destinationSlug}`}
+                    variant="secondary"
+                    size="sm"
+                    rightIcon={<FiArrowRight aria-hidden="true" />}
+                    data-analytics-id="tour-detail-view-destination"
+                  >
+                    Explore all {item.destination} guides
+                  </Button>
+                )}
+              </div>
             </div>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

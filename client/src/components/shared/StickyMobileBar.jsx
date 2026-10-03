@@ -8,6 +8,8 @@ import { cn } from "@/lib/cn";
 export default function StickyMobileBar({
   searchHref = "/tours",
   planHref = "#plan-my-trip",
+  searchLabel = "Search tours",
+  planLabel = "Plan my trip",
   className,
 }) {
   const [visible, setVisible] = useState(false);
@@ -53,7 +55,7 @@ export default function StickyMobileBar({
           className="title4 flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-accent px-3 py-2.5 text-white shadow-sm transition-colors hover:bg-dark"
         >
           <FiSearch aria-hidden="true" size={16} />
-          <span>Search tours</span>
+          <span>{searchLabel}</span>
         </Link>
 
         <Link
@@ -62,7 +64,7 @@ export default function StickyMobileBar({
           className="title4 flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-gray5 bg-bg-field px-3 py-2.5 text-dark transition-colors hover:bg-white"
         >
           <FiCalendar aria-hidden="true" size={16} className="text-accent" />
-          <span>Plan my trip</span>
+          <span>{planLabel}</span>
         </Link>
 
         <button

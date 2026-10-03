@@ -13,6 +13,11 @@ import WishlistButton from "@/components/shared/WishlistButton";
 export default function ExperienceCard({ experience }) {
   return <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
     <CardMedia src={experience.image} alt={`${experience.title} in ${experience.location}`} sizes="(max-width: 768px) 100vw, 33vw">
+      {experience.features?.includes("freeCancellation") && (
+        <span className="caption absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-0.5 text-xs font-semibold text-success shadow-xs">
+          Free cancellation
+        </span>
+      )}
       <WishlistButton itemId={experience.id} itemType="experience" label={experience.title} className="absolute right-4 top-4 bg-white/90" />
     </CardMedia>
     <CardBody>
