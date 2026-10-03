@@ -15,7 +15,7 @@ export function ToastProvider({ children }) {
     window.setTimeout(() => dismiss(id), 5000);
     return id;
   }, [dismiss]);
-  const value = useMemo(() => ({ toast, success: (message) => toast(message, "success"), error: (message) => toast(message, "error"), info: (message) => toast(message, "info"), dismiss }), [toast, dismiss]);
+  const value = useMemo(() => ({ toasts, toast, success: (message) => toast(message, "success"), error: (message) => toast(message, "error"), info: (message) => toast(message, "info"), dismiss }), [toasts, toast, dismiss]);
   return <ToastContext.Provider value={value}>{children}</ToastContext.Provider>;
 }
 export function useToast() {
@@ -24,7 +24,9 @@ export function useToast() {
   return value;
 }
 export function Toaster() {
-  const { toasts, dismiss } = useContext(ToastContext) || { toasts: [], dismiss: () => {} };
+  const context = useContext(ToastContext);
+  const toasts = context?.toasts || [];
+  const dismiss = context?.dismiss || (() => {});
   const iconByType = { success: FiCheckCircle, error: FiAlertCircle, info: FiInfo };
   return <div aria-live="polite" aria-relevant="additions removals" className="fixed right-4 top-4 z-[100] grid w-[min(24rem,calc(100vw-2rem))] gap-3">{toasts.map(({ id, message, type }) => { const Icon = iconByType[type] || FiInfo; return <div key={id} role={type === "error" ? "alert" : "status"} className="flex items-center gap-3 rounded-xl border border-gray5 bg-white p-4 text-dark shadow-lg"><Icon aria-hidden="true" className={cn(type === "error" ? "text-error" : type === "success" ? "text-success" : "text-accent")} /><p className="body4 flex-1">{message}</p><IconButton icon={<FiX />} label="Dismiss notification" size="sm" variant="ghost" onClick={() => dismiss(id)} /></div>; })}</div>;
 }

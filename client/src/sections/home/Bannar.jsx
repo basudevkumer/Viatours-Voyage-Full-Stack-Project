@@ -6,36 +6,60 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiArrowRight, FiCalendar, FiMapPin, FiPause, FiPlay, FiUsers } from "react-icons/fi";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { heroReassurance } from "./data";
 
 /* ------------------------------------------------------------------ */
 /*  Settings                                                          */
 /* ------------------------------------------------------------------ */
-const AUTOPLAY_MS = 6000; // auto slide time (loop always on)
-const NAV_HEIGHT = 76; // fixed navbar height (px). Tailwind class niche `lg:top-[calc(50%+38px)]` = NAV_HEIGHT / 2
+const AUTOPLAY_MS = 6500;
+const NAV_HEIGHT = 76;
 
-// 5 ta slide dile image er moton 5 ta circle arc e dekhabe.
-// 5th slide er image / text / location nijer moton change kore nio.
 const slides = [
-  { id: "alpine", image: allImages.banner, eyebrow: "Go somewhere that stays with you", title: "Find your next unforgettable journey.", description: "Discover considered trips, local experiences and the confidence to plan your way.", location: "Dolomites, Italy" },
-  { id: "bali", image: allImages.trendingDestinations[4].image, eyebrow: "Travel deeper, feel more", title: "Slow down in beautiful Bali.", description: "Trade busy itineraries for hidden temples, warm welcomes and days that feel entirely yours.", location: "Bali, Indonesia" },
-  { id: "santorini", image: allImages.trendingDestinations[15].image, eyebrow: "Your next story starts here", title: "Make room for a little wonder.", description: "From golden sunsets to local tables, find experiences that stay with you long after you return.", location: "Santorini, Greece" },
-  { id: "maldives", image: allImages.trendingDestinations[14].image, eyebrow: "Escape the expected", title: "A world of blue is waiting.", description: "Find your perfect balance of adventure and stillness beside the clearest water on earth.", location: "Maldives" },
-  { id: "featured", image: allImages.trendingDestinations[0].image, eyebrow: "Made for curious travelers", title: "Every great trip begins with one step.", description: "Pick a place, pick your pace and let us handle the details that make it effortless.", location: "Featured destination" },
+  {
+    id: "alpine",
+    image: allImages.banner,
+    eyebrow: "CURATED JOURNEYS & EXPERIENCES",
+    title: "Find your next unforgettable journey.",
+    description: "Handcrafted itineraries, verified native guides, and flexible booking across the world's most captivating destinations.",
+    location: "Dolomites, Italy",
+  },
+  {
+    id: "bali",
+    image: allImages.trendingDestinations[4]?.image || allImages.banner,
+    eyebrow: "MINDFUL CULTURAL DISCOVERY",
+    title: "Slow down in the heart of Bali.",
+    description: "Exchange rushed tour buses for hidden jungle temples, emerald terraces, and warm local hospitality.",
+    location: "Bali, Indonesia",
+  },
+  {
+    id: "santorini",
+    image: allImages.trendingDestinations[15]?.image || allImages.banner,
+    eyebrow: "TIMELESS MEDITERRANEAN ESCAPES",
+    title: "Make room for genuine wonder.",
+    description: "From cliffside caldera sunsets to boutique volcanic vineyards, travel with verified hosts who know the secret spots.",
+    location: "Santorini, Greece",
+  },
+  {
+    id: "maldives",
+    image: allImages.trendingDestinations[14]?.image || allImages.banner,
+    eyebrow: "COASTAL & ISLAND SANCTUARIES",
+    title: "A world of clear water is waiting.",
+    description: "Find your balance of reef adventures, marine exploration, and peaceful ocean living.",
+    location: "Maldives",
+  },
+  {
+    id: "cappadocia",
+    image: allImages.trendingDestinations[0]?.image || allImages.banner,
+    eyebrow: "AUTHENTIC TRAVEL EXPERIENCES",
+    title: "Every remarkable trip begins here.",
+    description: "Choose your destination, travel at your own pace, and let our specialists orchestrate the seamless details.",
+    location: "Cappadocia, Turkey",
+  },
 ];
 
 const TOTAL = slides.length;
-const HALF_VISIBLE = TOTAL >= 5 ? 2 : 1; // koyta circle center er dui pashe dekhabe
+const HALF_VISIBLE = TOTAL >= 5 ? 2 : 1;
 
-/*
-  Wheel (arc) config
-  - vertical: true  => desktop, circles dan pashe upor-niche arc e
-  - vertical: false => mobile/tablet, circles niche ek line e arch e
-  size   = normal circle size (px)
-  active = active circle size (px)
-  radius = arc er radius (px)
-  gap    = duita circle er majher faka jayga (px) -> circle kokhono overlap korbe na
-  Circle er position ekhon size + gap theke auto calculate hoy, tai size bodlale o overlap hoy na.
-*/
 const WHEEL = {
   mobile: { vertical: false, size: 52, active: 70, radius: 170, gap: 8 },
   tablet: { vertical: false, size: 70, active: 94, radius: 260, gap: 10 },
@@ -50,7 +74,6 @@ const getWheelConfig = (width) => {
   return WHEEL.mobile;
 };
 
-// Center theke koto angle e prottek circle boshbe (circle er majhe exact gap rekhe)
 const getAngles = (cfg) => {
   const angles = [0];
   let total = 0;
@@ -62,8 +85,8 @@ const getAngles = (cfg) => {
   return angles;
 };
 
-// Screen size + height onujayi final wheel config (height kom hole circle gulo auto choto hoy)
 const buildWheel = () => {
+  if (typeof window === "undefined") return null;
   const width = window.innerWidth;
   const height = window.innerHeight;
   const base = getWheelConfig(width);
@@ -87,12 +110,10 @@ const buildWheel = () => {
   return {
     ...cfg,
     angles: getAngles(cfg),
-    // desktop e active circle jeno screen er dhar e lege na thake
     right: Math.round(cfg.active / 2 + Math.max(24, width * 0.03)),
   };
 };
 
-// active slide theke i-th slide er signed distance (-2 ... 0 ... +2)
 const getOffset = (index, active) => {
   let diff = (index - active + TOTAL) % TOTAL;
   if (diff > TOTAL / 2) diff -= TOTAL;
@@ -100,16 +121,12 @@ const getOffset = (index, active) => {
 };
 
 const bannerCss = `
-@keyframes bn-up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes bn-up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes bn-fade{from{opacity:0}}
 @media (prefers-reduced-motion:reduce){[data-banner] *{animation:none !important;transition-duration:.01ms !important}}
 `;
 
-/* ------------------------------------------------------------------ */
-/*  Component                                                         */
-/* ------------------------------------------------------------------ */
 const Bannar = () => {
-  // prev rakhi jate bujhte pari kon circle arc er ek matha theke onno matha e jump korche
   const [slide, setSlide] = useState({ index: 0, prev: 0 });
   const [userPaused, setUserPaused] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -122,22 +139,18 @@ const Bannar = () => {
   const paused = userPaused || hovered || typing;
   const activeSlide = slides[activeIndex];
 
-  const goToSlide = useCallback(
-    (index) => setSlide((current) => ({ prev: current.index, index: ((index % TOTAL) + TOTAL) % TOTAL })),
-    [],
-  );
+  const goToSlide = useCallback((index) => {
+    setSlide((current) => ({ prev: current.index, index: ((index % TOTAL) + TOTAL) % TOTAL }));
+  }, []);
 
-  // Autoplay + loop (page load hoyei start hoy, last er por abar first e ghure)
   useEffect(() => {
     if (paused) return undefined;
-    const timer = window.setTimeout(
-      () => setSlide((current) => ({ prev: current.index, index: (current.index + 1) % TOTAL })),
-      AUTOPLAY_MS,
-    );
+    const timer = window.setTimeout(() => {
+      setSlide((current) => ({ prev: current.index, index: (current.index + 1) % TOTAL }));
+    }, AUTOPLAY_MS);
     return () => window.clearTimeout(timer);
   }, [activeIndex, paused]);
 
-  // screen size onujayi wheel config
   useEffect(() => {
     const update = () => setWheel(buildWheel());
     update();
@@ -145,11 +158,11 @@ const Bannar = () => {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  // Mobile swipe
   const onTouchStart = (event) => {
     const touch = event.touches[0];
     touchRef.current = { x: touch.clientX, y: touch.clientY };
   };
+
   const onTouchEnd = (event) => {
     const start = touchRef.current;
     touchRef.current = null;
@@ -157,13 +170,15 @@ const Bannar = () => {
     const touch = event.changedTouches[0];
     const dx = touch.clientX - start.x;
     const dy = touch.clientY - start.y;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) goToSlide(activeIndex + (dx < 0 ? 1 : -1));
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      goToSlide(activeIndex + (dx < 0 ? 1 : -1));
+    }
   };
 
   const getItemStyle = (index) => {
     const offset = getOffset(index, activeIndex);
     const prevOffset = getOffset(index, slide.prev);
-    const wrapped = Math.abs(offset - prevOffset) > TOTAL / 2; // arc er ek matha theke onno matha e jump
+    const wrapped = Math.abs(offset - prevOffset) > TOTAL / 2;
     const visible = Math.abs(offset) <= HALF_VISIBLE;
     const isActive = offset === 0;
     const angle = Math.sign(offset) * wheel.angles[Math.min(Math.abs(offset), HALF_VISIBLE)];
@@ -181,7 +196,6 @@ const Bannar = () => {
         opacity: visible ? (isActive ? 1 : 0.95) : 0,
         pointerEvents: visible ? "auto" : "none",
         zIndex: isActive ? 20 : 10,
-        // wrap hole arc er moddhe diye ure na giye, sarasori notun jaygay fade-in hobe
         transition: wrapped
           ? "none"
           : "transform 800ms cubic-bezier(.22,1,.36,1), width 800ms cubic-bezier(.22,1,.36,1), height 800ms cubic-bezier(.22,1,.36,1), opacity 600ms ease",
@@ -193,9 +207,10 @@ const Bannar = () => {
   return (
     <section
       data-banner
+      data-home-hero
       aria-roledescription="carousel"
       aria-label="Featured travel destinations"
-      className="relative isolate min-h-[100svh] overflow-hidden bg-[#18352f] text-white"
+      className="relative isolate min-h-[100svh] overflow-hidden bg-dark text-white"
       onPointerEnter={(event) => event.pointerType === "mouse" && setHovered(true)}
       onPointerLeave={() => setHovered(false)}
       onTouchStart={onTouchStart}
@@ -203,7 +218,7 @@ const Bannar = () => {
     >
       <style>{bannerCss}</style>
 
-      {/* Full background slides (crossfade) */}
+      {/* Crossfade background slides */}
       <div className="absolute inset-0 -z-20" aria-hidden="true">
         {slides.map((item, index) => (
           <Image
@@ -214,26 +229,52 @@ const Bannar = () => {
             priority={index === 0}
             sizes="100vw"
             quality={85}
-            className={`object-cover object-[62%_center] transition-[opacity,transform] duration-[1400ms] ease-out lg:object-center ${index === activeIndex ? "scale-100 opacity-100" : "scale-[1.06] opacity-0"}`}
+            className={`object-cover object-[62%_center] transition-[opacity,transform] duration-[1400ms] ease-out lg:object-center ${
+              index === activeIndex ? "scale-100 opacity-100" : "scale-[1.06] opacity-0"
+            }`}
           />
         ))}
       </div>
 
-      {/* Readability overlay: mobile e niche dark, desktop e left dark */}
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(7,30,27,.55)_0%,rgba(7,30,27,.2)_28%,rgba(7,30,27,.62)_62%,rgba(7,30,27,.94)_100%)] lg:bg-[linear-gradient(90deg,rgba(7,30,27,.92)_0%,rgba(7,30,27,.68)_34%,rgba(7,30,27,.12)_66%,rgba(7,30,27,.28)_100%)]" />
+      {/* Cinematic Gradient Readability overlay */}
+      <div
+        data-hero-background
+        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(5,7,60,.55)_0%,rgba(5,7,60,.25)_28%,rgba(5,7,60,.68)_62%,rgba(5,7,60,.95)_100%)] lg:bg-[linear-gradient(90deg,rgba(5,7,60,.94)_0%,rgba(5,7,60,.75)_36%,rgba(5,7,60,.18)_68%,rgba(5,7,60,.35)_100%)]"
+      />
 
       <Container>
-        <div className="relative flex min-h-[calc(100svh-76px)] flex-col justify-end pb-6 pt-28 sm:pb-10 sm:pt-32 lg:justify-center lg:pb-20 lg:pt-28">
-          <div className="relative z-10 w-full max-w-[620px]">
-            <p key={`${activeSlide.id}-eyebrow`} className="caption text-white/80 animate-[bn-up_.7s_ease_both]">{activeSlide.eyebrow}</p>
-            <h1 key={`${activeSlide.id}-title`} className="heading mt-3 max-w-[620px] !text-[32px] !leading-[1.15] text-white animate-[bn-up_.7s_.08s_ease_both] sm:mt-4 sm:!text-5xl lg:!text-6xl">{activeSlide.title}</h1>
-            <p key={`${activeSlide.id}-description`} className="body1 mt-4 max-w-[530px] text-white/85 animate-[bn-up_.7s_.16s_ease_both] sm:mt-5">{activeSlide.description}</p>
+        <div className="relative flex min-h-[calc(100svh-76px)] flex-col justify-end pb-8 pt-28 sm:pb-12 sm:pt-32 lg:justify-center lg:pb-20 lg:pt-28">
+          <div data-hero-copy className="relative z-10 w-full max-w-[650px]">
+            <p key={`${activeSlide.id}-eyebrow`} className="caption text-white/80 animate-[bn-up_.6s_ease_both]">
+              {activeSlide.eyebrow}
+            </p>
 
-            <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
-              <Link href="/tours" className="title4 inline-flex items-center gap-2 rounded-[12px] bg-accent px-5 py-3.5 text-white transition-colors hover:bg-white hover:text-accent sm:py-4">Explore tours <FiArrowRight aria-hidden="true" /></Link>
-              <Link href="/contact" className="title4 inline-flex items-center rounded-[12px] border border-white/60 px-5 py-3.5 text-white transition-colors hover:border-white hover:bg-white hover:text-dark sm:py-4">Plan your trip</Link>
+            <h1
+              key={`${activeSlide.id}-title`}
+              className="heading mt-3 max-w-[620px] !text-[34px] !leading-[1.12] text-white animate-[bn-up_.6s_.06s_ease_both] sm:mt-4 sm:!text-5xl lg:!text-6xl"
+            >
+              {activeSlide.title}
+            </h1>
+
+            <p
+              key={`${activeSlide.id}-description`}
+              className="body1 mt-3.5 max-w-[540px] text-white/90 animate-[bn-up_.6s_.12s_ease_both] sm:mt-4"
+            >
+              {activeSlide.description}
+            </p>
+
+            {/* Quiet secondary link beside headline */}
+            <div className="mt-4 flex items-center gap-4">
+              <Link
+                href="/destinations"
+                data-analytics-id="hero-explore-destinations"
+                className="title4 inline-flex items-center gap-1.5 text-white/90 underline decoration-accent decoration-2 underline-offset-4 transition-colors hover:text-white"
+              >
+                Or browse all 50+ destinations <FiArrowRight aria-hidden="true" className="text-accent" />
+              </Link>
             </div>
 
+            {/* ONE PRIMARY ACTION: The SearchBar */}
             <form
               action="/tours"
               method="get"
@@ -241,61 +282,110 @@ const Bannar = () => {
               onBlur={(event) => {
                 if (!event.currentTarget.contains(event.relatedTarget)) setTyping(false);
               }}
-              className="mt-7 grid w-full max-w-[820px] gap-1 rounded-2xl bg-white p-2.5 shadow-xl sm:mt-10 sm:grid-cols-[1.4fr_1fr_1fr_auto] sm:gap-2 sm:rounded-full sm:p-2"
+              className="mt-6 grid w-full max-w-[800px] gap-1 rounded-2xl bg-white p-2.5 shadow-2xl sm:mt-8 sm:grid-cols-[1.4fr_1fr_1fr_auto] sm:gap-2 sm:rounded-full sm:p-2"
             >
-              <label className="flex items-center gap-3 rounded-xl px-3 py-2 sm:rounded-full" htmlFor="hero-destination">
-                <FiMapPin aria-hidden="true" className="shrink-0 text-accent" />
-                <span className="sr-only">Destination</span>
-                <input id="hero-destination" name="destination" placeholder="Where do you want to go?" className="body4 w-full min-w-0 bg-transparent text-dark placeholder:text-text-secondary focus:outline-none" />
+              <label className="flex items-center gap-2.5 rounded-xl px-3 py-2 sm:rounded-full" htmlFor="hero-search-dest">
+                <FiMapPin aria-hidden="true" className="shrink-0 text-accent text-lg" />
+                <span className="sr-only">Where do you want to go?</span>
+                <input
+                  id="hero-search-dest"
+                  name="destination"
+                  placeholder="Where to? (e.g. Bali, Paris)"
+                  className="body4 w-full min-w-0 bg-transparent text-dark placeholder:text-text-secondary focus:outline-none"
+                />
               </label>
-              <label className="flex items-center gap-3 border-t border-gray6 px-3 py-2 sm:border-l sm:border-t-0">
-                <FiCalendar aria-hidden="true" className="shrink-0 text-accent" />
-                <span className="sr-only">Travel dates</span>
-                <input name="date" type="text" placeholder="When" className="body4 w-full min-w-0 bg-transparent text-dark placeholder:text-text-secondary focus:outline-none" />
+
+              <label className="flex items-center gap-2.5 border-t border-gray6 px-3 py-2 sm:border-l sm:border-t-0" htmlFor="hero-search-date">
+                <FiCalendar aria-hidden="true" className="shrink-0 text-accent text-lg" />
+                <span className="sr-only">When do you want to travel?</span>
+                <input
+                  id="hero-search-date"
+                  name="date"
+                  type="text"
+                  placeholder="When? (Month/Season)"
+                  className="body4 w-full min-w-0 bg-transparent text-dark placeholder:text-text-secondary focus:outline-none"
+                />
               </label>
-              <label className="flex items-center gap-3 border-t border-gray6 px-3 py-2 sm:border-l sm:border-t-0">
-                <FiUsers aria-hidden="true" className="shrink-0 text-accent" />
-                <span className="sr-only">Travelers</span>
-                <input name="travelers" type="text" placeholder="Travelers" className="body4 w-full min-w-0 bg-transparent text-dark placeholder:text-text-secondary focus:outline-none" />
+
+              <label className="flex items-center gap-2.5 border-t border-gray6 px-3 py-2 sm:border-l sm:border-t-0" htmlFor="hero-search-travelers">
+                <FiUsers aria-hidden="true" className="shrink-0 text-accent text-lg" />
+                <span className="sr-only">How many travelers?</span>
+                <input
+                  id="hero-search-travelers"
+                  name="travelers"
+                  type="text"
+                  placeholder="Travelers"
+                  className="body4 w-full min-w-0 bg-transparent text-dark placeholder:text-text-secondary focus:outline-none"
+                />
               </label>
-              <button type="submit" className="title4 mt-1 rounded-xl bg-dark px-5 py-3 text-white transition-colors hover:bg-accent sm:mt-0 sm:rounded-full">Search</button>
+
+              <button
+                type="submit"
+                data-analytics-id="hero-search-submit"
+                className="title4 mt-1 inline-flex items-center justify-center rounded-xl bg-accent px-6 py-3 text-white transition-colors hover:bg-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:mt-0 sm:rounded-full"
+              >
+                Search tours
+              </button>
             </form>
+
+            {/* 3 Short Factual Reassurance Items under Search */}
+            <ul className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-white/80" aria-label="Booking reassurances">
+              {heroReassurance.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <li key={item.id} className="body5 flex items-center gap-1.5 font-medium">
+                    <Icon aria-hidden="true" className="text-accent shrink-0" />
+                    <span>{item.text}</span>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
 
-          {/* Controls: play/pause, slide lines, location */}
-          <div className="relative z-10 mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 lg:absolute lg:bottom-8 lg:left-0 lg:mt-0">
+          {/* Controls: Play/Pause, slide dots, current location */}
+          <div className="relative z-10 mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 lg:absolute lg:bottom-8 lg:left-0 lg:mt-0">
             <button
               type="button"
               aria-label={userPaused ? "Play slideshow" : "Pause slideshow"}
               onClick={() => setUserPaused((value) => !value)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 text-white transition-colors hover:bg-white hover:text-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 text-white transition-colors hover:bg-white hover:text-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
             >
               {userPaused ? <FiPlay aria-hidden="true" /> : <FiPause aria-hidden="true" />}
             </button>
+
             <div className="flex items-center" role="group" aria-label="Slide navigation">
               {slides.map((item, index) => (
                 <button
                   key={item.id}
                   type="button"
-                  aria-label={`Go to slide ${index + 1}`}
+                  aria-label={`Go to slide ${index + 1}: ${item.location}`}
                   aria-current={index === activeIndex ? "true" : undefined}
                   onClick={() => goToSlide(index)}
                   className="group px-[3px] py-3"
                 >
-                  <span className={`block h-1 rounded-full transition-all duration-500 ${index === activeIndex ? "w-8 bg-white" : "w-2 bg-white/45 group-hover:bg-white/80"}`} />
+                  <span
+                    className={`block h-1 rounded-full transition-all duration-500 ${
+                      index === activeIndex ? "w-8 bg-white" : "w-2 bg-white/45 group-hover:bg-white/80"
+                    }`}
+                  />
                 </button>
               ))}
             </div>
+
             <p className="body5 flex items-center gap-1.5 whitespace-nowrap text-white/90" aria-live="off">
-              <FiMapPin aria-hidden="true" />
+              <FiMapPin aria-hidden="true" className="text-accent" />
               {activeSlide.location}
             </p>
           </div>
         </div>
       </Container>
 
-      {/* Arc thumbnail wheel (desktop: right side vertical arc, mobile/tablet: bottom arch) */}
-      <div className="relative z-10 h-[150px] sm:h-[190px] lg:pointer-events-none lg:absolute lg:inset-0 lg:h-auto" role="group" aria-label="Choose a destination">
+      {/* Arc thumbnail wheel */}
+      <div
+        className="relative z-10 h-[150px] sm:h-[190px] lg:pointer-events-none lg:absolute lg:inset-0 lg:h-auto"
+        role="group"
+        aria-label="Choose a destination"
+      >
         <div
           className="absolute left-1/2 top-[48px] h-0 w-0 sm:top-[62px] lg:left-auto lg:top-[calc(50%+38px)]"
           style={wheel?.vertical ? { right: wheel.right } : undefined}
@@ -312,8 +402,8 @@ const Bannar = () => {
                   tabIndex={thumb.visible ? 0 : -1}
                   onClick={() => goToSlide(index)}
                   style={thumb.style}
-                  className={`absolute left-0 top-0 aspect-square overflow-hidden rounded-full bg-white/10 shadow-2xl will-change-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
-                    thumb.isActive ? "border-[5px] border-white/40 sm:border-[6px]" : "border-2 border-white/60 hover:border-white"
+                  className={`absolute left-0 top-0 aspect-square overflow-hidden rounded-full bg-white/10 shadow-2xl will-change-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-white ${
+                    thumb.isActive ? "border-[5px] border-white/50 sm:border-[6px]" : "border-2 border-white/60 hover:border-white"
                   }`}
                 >
                   <Image src={item.image} alt="" fill sizes="210px" className="object-cover" />
