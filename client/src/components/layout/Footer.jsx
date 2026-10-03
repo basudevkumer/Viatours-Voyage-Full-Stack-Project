@@ -1,9 +1,9 @@
-import React from "react";
 import Container from "../shared/Container";
 import { footerData } from "@/components/helper/projectsData";
 import Link from "next/link";
 import NewsletterForm from "@/components/shared/NewsletterForm";
 import PaymentMethods from "@/components/shared/PaymentMethods";
+import { SITE_CONFIG } from "@/lib/site";
 
 const Footer = () => {
   return (
@@ -15,7 +15,9 @@ const Footer = () => {
           <div className="pt-10 sm:pt-14 lg:pt-[95px] pb-6 sm:pb-8 lg:pb-[64px] flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6 border-b border-accent/25">
             <p className="title2 sm:title1 !font-medium text-dark">
               Speak to our expert at{" "}
-              <span className="text-accent block sm:inline">1-800-453-6744</span>
+              <a href={`tel:${SITE_CONFIG.phoneTel}`} className="text-accent hover:underline block sm:inline">
+                {SITE_CONFIG.phoneDisplay}
+              </a>
             </p>
             <button className="self-start sm:self-auto title4 sm:title1 !font-medium text-dark border border-accent/30 rounded-full px-5 py-2 hover:bg-accent hover:text-white transition duration-300">
               Follow Us
@@ -31,10 +33,12 @@ const Footer = () => {
                 Contact
               </p>
               <p className="body4 text-dark max-w-[260px]">
-                328 Queensberry Street, North Melbourne VIC3051, Australia.
+                {SITE_CONFIG.address.formatted}
               </p>
               <p className="mt-4 sm:mt-[18px] title4 text-dark">
-                hi@viatours.com
+                <a href={`mailto:${SITE_CONFIG.email}`} className="hover:text-accent transition-colors">
+                  {SITE_CONFIG.email}
+                </a>
               </p>
             </div>
 
@@ -109,7 +113,7 @@ const Footer = () => {
         <Container>
           <div className="py-4 sm:py-6 flex flex-col-reverse sm:flex-row items-center justify-between gap-3 sm:gap-0">
             <p className="text-dark body4 text-center sm:text-left">
-              © Copyright Viatours {new Date().getFullYear()}
+              © Copyright {SITE_CONFIG.name} {new Date().getFullYear()}
             </p>
             <PaymentMethods />
           </div>
