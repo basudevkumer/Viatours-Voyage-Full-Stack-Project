@@ -118,7 +118,12 @@ export const experiences = [
     groupSizeMax: 18,
     languages: ["English", "Thai"],
     price: 76.0,
-    originalPrice: null,
+    // TODO(compliance): confirm the original price was genuinely charged before launch, per applicable consumer-protection rules
+    // TODO(api): Sync marine reserve seasonal promo and sea canoe operator contracts
+    originalPrice: 95.0,
+    validUntil: "2026-12-10",
+    dealLabel: "Marine reserve deal",
+    terms: ["National marine park permit included", "Free cancellation up to 24h before start"],
     currency: "USD",
     rating: 4.7,
     reviews: 156,
@@ -209,7 +214,12 @@ export const experiences = [
     groupSizeMax: 6,
     languages: ["English", "Arabic"],
     price: 84.0,
-    originalPrice: null,
+    // TODO(compliance): confirm the original price was genuinely charged before launch, per applicable consumer-protection rules
+    // TODO(api): Sync desert sunset promotional pricing with UAE safari operator allotments
+    originalPrice: 105.0,
+    validUntil: "2026-11-20",
+    dealLabel: "Sunset promo",
+    terms: ["Applies to afternoon safari slots", "Full Bedouin dune dinner included"],
     currency: "USD",
     rating: 4.9,
     reviews: 302,
@@ -255,7 +265,12 @@ export const experiences = [
     groupSizeMax: 10,
     languages: ["English", "Greek"],
     price: 55.0,
-    originalPrice: null,
+    // TODO(compliance): confirm the original price was genuinely charged before launch, per applicable consumer-protection rules
+    // TODO(api): Sync caldera culinary tasting special with Santorini partner tavernas
+    originalPrice: 70.0,
+    validUntil: "2026-10-31",
+    dealLabel: "Sunset tasting offer",
+    terms: ["Valid for autumn season tastings", "Includes 4 volcanic wine pairings"],
     currency: "USD",
     rating: 4.8,
     reviews: 98,
@@ -437,7 +452,12 @@ export const experiences = [
     groupSizeMax: 8,
     languages: ["English", "Japanese"],
     price: 65.0,
-    originalPrice: null,
+    // TODO(compliance): confirm the original price was genuinely charged before launch, per applicable consumer-protection rules
+    // TODO(api): Sync izakaya partner promotion with Shinjuku culinary guides
+    originalPrice: 80.0,
+    validUntil: "2026-11-30",
+    dealLabel: "Izakaya partner rate",
+    terms: ["Valid for midweek tours", "All 3 izakaya courses included"],
     currency: "USD",
     rating: 4.9,
     reviews: 210,

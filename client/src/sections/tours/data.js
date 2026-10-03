@@ -248,7 +248,12 @@ export const tours = [
     duration: "3 days / 2 nights",
     groupType: "Small group",
     price: 99.0,
-    originalPrice: 129.0, // Real negotiated seasonal rate
+    // TODO(compliance): confirm the original price was genuinely charged before launch, per applicable consumer-protection rules
+    // TODO(api): Sync seasonal promotional allocation and expiry date with tour inventory
+    originalPrice: 129.0,
+    validUntil: "2026-11-30",
+    dealLabel: "Off-peak special",
+    terms: ["Valid on departures through Nov 2026", "Includes temple entry fees"],
     currency: "USD",
     rating: 4.6,
     reviews: 175,
@@ -310,7 +315,12 @@ export const tours = [
     duration: "7 days / 6 nights",
     groupType: "Small group",
     price: 259.0,
-    originalPrice: 299.0, // Real early-bird seasonal rate
+    // TODO(compliance): confirm the original price was genuinely charged before launch, per applicable consumer-protection rules
+    // TODO(api): Sync early-bird seasonal rates with Bali local partner allotments
+    originalPrice: 299.0,
+    validUntil: "2026-12-31",
+    dealLabel: "Early booking",
+    terms: ["Book 30 days in advance", "Free cancellation up to 7 days before"],
     currency: "USD",
     rating: 4.8,
     reviews: 420,
@@ -470,7 +480,12 @@ export const tours = [
     duration: "8 days / 7 nights",
     groupType: "Small group",
     price: 310.0,
-    originalPrice: null,
+    // TODO(compliance): confirm the original price was genuinely charged before launch, per applicable consumer-protection rules
+    // TODO(api): Sync autumn seasonal promotion with Japan Rail & hotel partners
+    originalPrice: 360.0,
+    validUntil: "2026-11-30",
+    dealLabel: "Seasonal offer",
+    terms: ["Valid for autumn departures", "Includes Mount Fuji rail pass"],
     currency: "USD",
     rating: 4.9,
     reviews: 365,
@@ -630,7 +645,12 @@ export const tours = [
     duration: "5 days / 4 nights",
     groupType: "Small group",
     price: 199.0,
-    originalPrice: 235.0, // Real early-bird seasonal rate
+    // TODO(compliance): confirm the original price was genuinely charged before launch, per applicable consumer-protection rules
+    // TODO(api): Sync desert seasonal rate with UAE safari operator contracts
+    originalPrice: 235.0,
+    validUntil: "2026-10-31",
+    dealLabel: "Desert seasonal promo",
+    terms: ["Valid for autumn season", "Bedouin desert dinner included"],
     currency: "USD",
     rating: 4.8,
     reviews: 410,
@@ -1012,7 +1032,12 @@ export const tours = [
     duration: "6 days / 5 nights",
     groupType: "Small group",
     price: 155.0,
-    originalPrice: null,
+    // TODO(compliance): confirm the original price was genuinely charged before launch, per applicable consumer-protection rules
+    // TODO(api): Sync shoulder-season promotional pricing with Istanbul tour partner
+    originalPrice: 185.0,
+    validUntil: "2026-12-15",
+    dealLabel: "Early booking",
+    terms: ["Book 3 weeks in advance", "Bosphorus sunset cruise included"],
     currency: "USD",
     rating: 4.7,
     reviews: 302,

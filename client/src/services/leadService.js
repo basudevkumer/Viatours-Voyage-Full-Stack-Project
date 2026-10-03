@@ -4,18 +4,21 @@ export async function submitTripInquiry(leadData) {
   // Simulate network latency
   await new Promise((resolve) => setTimeout(resolve, 500));
 
-  if (!leadData.email || !leadData.name) {
+  const type = leadData.type || "trip";
+
+  if (!leadData.email || (type !== "deal-alert" && !leadData.name)) {
     return {
       success: false,
-      message: "Please provide your name and email address so our coordinators can reach you.",
-      errors: ["Missing required fields: name or email"],
+      message: "Please provide your contact details so our team can reach you.",
+      errors: ["Missing required fields: email" + (type !== "deal-alert" ? " or name" : "")],
     };
   }
 
-  const type = leadData.type || "trip";
   let confirmationMessage = "Thank you! Our travel specialist will prepare a custom proposal and reach out within 24 hours.";
 
-  if (type === "group") {
+  if (type === "deal-alert") {
+    confirmationMessage = "You're subscribed! We'll alert you the moment genuine price drops or seasonal offers match your preferences.";
+  } else if (type === "group") {
     confirmationMessage = "Thank you! Our group travel coordinator has received your request and will assemble a tailored group proposal within 24 hours.";
   } else if (type === "private") {
     confirmationMessage = "Thank you! Our private experiences desk has received your request and will provide custom pricing within 24 hours.";

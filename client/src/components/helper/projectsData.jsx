@@ -7,8 +7,7 @@ const navLinks = [
   { id: 2, label: "TOURS", path: "/tours" },
   { id: 3, label: "EXPERIENCES", path: "/activities" },
   { id: 4, label: "TRAVEL GUIDE", path: "/travel-guide" },
-  // TODO(routes): Add a dedicated deals page before linking this item.
-  { id: 5, label: "DEALS", path: "#" },
+  { id: 5, label: "DEALS", path: "/deals" },
   { id: 6, label: "ABOUT", path: "/about" },
   { id: 7, label: "CONTACT", path: "/contact" },
 ];
@@ -19,6 +18,7 @@ export const footerData = [
     title: "Company",
     links: [
       { label: "About Us", path: "/about" },
+      { label: "Special Deals", path: "/deals" },
       // TODO(routes): Add a reviews page before linking this item.
       { label: "Viatours Reviews", path: "#" },
       { label: "Contact Us", path: "/contact" },
