@@ -1,8 +1,66 @@
 import Container from "@/components/shared/Container";
-import Image from "next/image";
-import Link from "next/link";
 import SectionHeading from "@/components/shared/SectionHeading";
+import DestinationCard from "@/components/shared/DestinationCard";
+import Button from "@/components/ui/Button";
+import Link from "next/link";
 import { trendingDestinations } from "./data";
+import { FiArrowRight } from "react-icons/fi";
 
-const DestinationDiscovery = () => <section className="bg-white py-14 sm:py-20"><Container><SectionHeading eyebrow="GO SOMEWHERE NEW" title="Where will you go next?" text="Browse destinations made for your next chapter." /><div className="grid grid-cols-2 gap-4 sm:grid-cols-4">{trendingDestinations.slice(0, 8).map((destination) => <Link href="#discover" key={destination.id} className="group relative aspect-[.9] overflow-hidden rounded-2xl"><Image src={destination.image} alt={destination.city} fill sizes="(max-width: 640px) 50vw, 25vw" className="object-cover transition-transform duration-500 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent" /><div className="absolute bottom-4 left-4"><h3 className="title3 text-white">{destination.city}</h3><p className="body5 mt-1 text-white/75">{destination.tours}</p></div></Link>)}</div></Container></section>;
-export default DestinationDiscovery;
+const destinationSlugs = [
+  { name: "Paris", slug: "paris", image: trendingDestinations[0].image, count: "6 tours" },
+  { name: "Rome", slug: "rome", image: trendingDestinations[2].image, count: "6 tours" },
+  { name: "Bali", slug: "bali", image: trendingDestinations[4].image, count: "7 tours" },
+  { name: "Tokyo", slug: "tokyo", image: trendingDestinations[6].image, count: "8 tours" },
+  { name: "Cappadocia", slug: "cappadocia", image: trendingDestinations[7].image, count: "4 tours" },
+  { name: "Dubai", slug: "dubai", image: trendingDestinations[8].image, count: "5 tours" },
+  { name: "Barcelona", slug: "barcelona", image: trendingDestinations[9].image, count: "6 tours" },
+  { name: "Santorini", slug: "santorini", image: trendingDestinations[15].image, count: "6 tours" },
+];
+
+export default function DestinationDiscovery() {
+  return (
+    <section className="bg-white py-14 sm:py-20" id="destinations">
+      <Container>
+        <SectionHeading
+          eyebrow="GLOBAL HUBS"
+          title="Explore tours by iconic destination"
+          text="Browse handcrafted departures across world capitals, island archipelagos, and ancient trade routes."
+          action={
+            <Button
+              href="/destinations"
+              variant="outline"
+              size="sm"
+              rightIcon={<FiArrowRight aria-hidden="true" />}
+              data-analytics-id="tours-explore-all-destinations"
+            >
+              All destinations
+            </Button>
+          }
+        />
+
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
+          {destinationSlugs.map((dest) => (
+            <div key={dest.slug} className="group flex flex-col">
+              <DestinationCard
+                image={dest.image}
+                name={dest.name}
+                tours={dest.count}
+                href={`/destinations/${dest.slug}`}
+                className="shadow-xs hover:shadow-md"
+              />
+              <div className="mt-2 text-center">
+                <Link
+                  href={`/tours?destination=${encodeURIComponent(dest.name)}#discover`}
+                  className="caption text-accent hover:underline inline-flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  data-analytics-id={`tours-dest-filter-${dest.slug}`}
+                >
+                  View {dest.name} tours <FiArrowRight size={12} aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}

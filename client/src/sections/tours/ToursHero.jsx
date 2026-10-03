@@ -1,8 +1,60 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import PageHero from "@/components/shared/PageHero";
-import Button from "@/components/ui/Button";
-import { FiArrowRight } from "react-icons/fi";
+import SearchBar from "@/components/shared/SearchBar";
 import { trendingDestinations } from "./data";
+import { FiCheckCircle, FiShield, FiHeadphones } from "react-icons/fi";
 
 export default function ToursHero() {
-  return <PageHero eyebrow="EXPLORE THE WORLD" title="Find your perfect journey." text="Discover unforgettable destinations, curated experiences, and tours designed to turn your next trip into a story worth remembering." media={{ src: trendingDestinations[7].image, alt: "Hot air balloons over Cappadocia", caption: "Your next story starts here." }} actions={<><Button href="#discover" rightIcon={<FiArrowRight />} size="lg" data-analytics-id="tours-hero-search">Search tours</Button><Button href="/destinations" variant="outline" size="lg" className="!border-white/35 !text-white hover:!bg-white hover:!text-dark">Explore destinations</Button></>} />;
+  const router = useRouter();
+
+  const handleSearch = ({ query }) => {
+    if (query) {
+      router.push(`/tours?search=${encodeURIComponent(query)}#discover`);
+    } else {
+      const el = document.getElementById("discover");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <PageHero
+      eyebrow="HANDCRAFTED GLOBAL ITINERARIES"
+      title="Find your perfect journey."
+      text="Discover verified guided tours, authentic cultural walks, and multi-day explorations with transparent pricing and native local guides."
+      media={{
+        src: trendingDestinations[7].image,
+        alt: "Hot air balloons over Cappadocia landscape",
+        caption: "Curated experiences across 16 global destinations.",
+      }}
+      actions={
+        <div className="w-full">
+          <div className="mb-4">
+            <SearchBar
+              onSearch={handleSearch}
+              placeholder="Search by city, country or activity..."
+              data-analytics-id="tours-hero-search-submit"
+            />
+          </div>
+
+          {/* Factual Reassurance Badges */}
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2">
+            <span className="caption flex items-center gap-1.5 text-white/90">
+              <FiCheckCircle className="text-accent" aria-hidden="true" />
+              Free cancellation on qualifying tours
+            </span>
+            <span className="caption flex items-center gap-1.5 text-white/90">
+              <FiShield className="text-accent" aria-hidden="true" />
+              100% verified local guides
+            </span>
+            <span className="caption flex items-center gap-1.5 text-white/90">
+              <FiHeadphones className="text-accent" aria-hidden="true" />
+              24/7 human traveler support
+            </span>
+          </div>
+        </div>
+      }
+    />
+  );
 }

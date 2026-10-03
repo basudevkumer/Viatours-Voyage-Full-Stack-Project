@@ -19,6 +19,8 @@ export async function submitTripInquiry(leadData) {
     confirmationMessage = "Thank you! Our group travel coordinator has received your request and will assemble a tailored group proposal within 24 hours.";
   } else if (type === "call") {
     confirmationMessage = "Thank you! Your consultation request has been received. Our specialist will confirm your call slot via email.";
+  } else if (type === "question") {
+    confirmationMessage = "Thank you! Your inquiry has been sent to our local tour specialist. We will reply via email within 24 hours.";
   }
 
   return {
