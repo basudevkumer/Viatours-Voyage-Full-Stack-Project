@@ -27,6 +27,10 @@ export async function submitTripInquiry(leadData) {
     confirmationMessage = "Thank you! We received your day plan. Our local coordinator will verify activity timing and email your synchronized schedule within 24 hours.";
   } else if (type === "partner") {
     confirmationMessage = "Thank you for your interest in hosting with Viatours! Our regional partner team will review your listing request and reach out within 2 business days.";
+  } else if (type === "guide-trip") {
+    confirmationMessage = "Thank you! Our travel specialist will curate an itinerary based on this guide and contact you within 24 hours.";
+  } else if (type === "contributor") {
+    confirmationMessage = "Thank you for sharing your travel expertise! Our editorial desk will review your proposal and reply within 3 business days.";
   }
 
   return {
