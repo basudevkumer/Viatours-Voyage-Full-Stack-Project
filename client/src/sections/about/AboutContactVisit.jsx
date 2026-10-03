@@ -4,6 +4,7 @@ import SectionHeading from "@/components/shared/SectionHeading";
 import ContactInfoBlock from "@/components/shared/ContactInfoBlock";
 import Button from "@/components/ui/Button";
 import { SITE_CONFIG } from "@/lib/site";
+import { contactUrl } from "@/lib/routes";
 import allImages from "@/components/helper/imageProvider";
 import { FiArrowRight, FiMapPin } from "react-icons/fi";
 
@@ -17,7 +18,7 @@ export default function AboutContactVisit() {
           text="We believe in being reachable. Connect with our dedicated support team or visit our central customer service desk."
           action={
             <Button
-              href="/contact"
+              href={contactUrl({ type: "question", source: "about-contact-visit" })}
               variant="outline"
               size="sm"
               rightIcon={<FiArrowRight aria-hidden="true" />}
@@ -26,6 +27,7 @@ export default function AboutContactVisit() {
               Contact form & FAQ
             </Button>
           }
+
         />
 
         <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">

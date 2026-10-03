@@ -19,7 +19,8 @@ export const SITE_CONFIG = Object.freeze({
     countryCode: "AU",
     formatted: "328 Queensberry Street, North Melbourne VIC 3051, Australia",
   }, // TODO(content): Confirm physical office address and registration jurisdiction
-  hours: "Monday – Sunday, 24/7 Support Desk", // TODO(content): Confirm true support hours
+  hours: "Monday – Friday, 9:00 AM – 6:00 PM AEST", // TODO(content): Confirm true support desk hours (omit if unknown)
+  responseExpectation: "Within 1 business day", // TODO(content): Confirm realistic SLA (omit if unverified)
   tagline: "A more considered way to plan a trip",
   mission:
     "We bring authentic destinations, hand-crafted tour itineraries, and small-group local experiences together so travelers can explore with total clarity, transparent pricing, and zero artificial pressure.",
@@ -31,3 +32,4 @@ export const SITE_CONFIG = Object.freeze({
     linkedin: "",
   },
 });
+

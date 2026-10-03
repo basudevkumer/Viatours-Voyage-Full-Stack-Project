@@ -1,6 +1,8 @@
 import Section from "@/components/shared/Section";
 import Button from "@/components/ui/Button";
 import { FiGlobe, FiDollarSign, FiCalendar, FiArrowRight } from "react-icons/fi";
+import { contactUrl } from "@/lib/routes";
+
 
 const partnerPerks = [
   {
@@ -37,7 +39,7 @@ export default function PartnerBanner() {
 
           <div className="shrink-0">
             <Button
-              href="/contact?type=partner"
+              href={contactUrl({ type: "partner", source: "home-partner-banner" })}
               variant="secondary"
               size="md"
               data-analytics-id="partner-become-a-partner-cta"
@@ -46,6 +48,7 @@ export default function PartnerBanner() {
               Become a verified partner
             </Button>
           </div>
+
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-6 border-t border-gray6 pt-8 sm:grid-cols-2 lg:grid-cols-3">

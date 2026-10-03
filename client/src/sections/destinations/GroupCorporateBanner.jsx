@@ -1,6 +1,7 @@
 import CTABanner from "@/components/shared/CTABanner";
 import Button from "@/components/ui/Button";
 import { FiUsers, FiArrowRight } from "react-icons/fi";
+import { contactUrl } from "@/lib/routes";
 
 export default function GroupCorporateBanner() {
   return (
@@ -23,7 +24,7 @@ export default function GroupCorporateBanner() {
       }
       secondaryAction={
         <Button
-          href="/contact"
+          href={contactUrl({ type: "group", source: "destinations-group-banner" })}
           variant="outline"
           size="md"
           className="border-white/30 text-white hover:bg-white/10"
@@ -33,6 +34,7 @@ export default function GroupCorporateBanner() {
           Contact group desk
         </Button>
       }
+
       className="border-t border-b border-gray6"
     />
   );

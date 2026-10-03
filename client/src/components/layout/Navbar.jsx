@@ -10,8 +10,10 @@ import Container from "../shared/Container";
 import Button from "@/components/ui/Button";
 import MobileNav from "@/components/layout/MobileNav";
 import UserMenu from "@/components/layout/UserMenu";
+import { contactUrl } from "@/lib/routes";
 
 const Navbar = () => {
+
   const pathname = usePathname();
   const { navlogo } = allImages;
   const [scrolled, setScrolled] = useState(false);
@@ -75,13 +77,14 @@ const Navbar = () => {
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <UserMenu />
             <Button
-              href="/contact"
+              href={contactUrl({ type: "trip", source: "navbar" })}
               size="md"
               data-analytics-id="navbar-plan-your-trip"
               className="px-2 hover:!bg-white hover:!text-accent sm:px-5"
             >
               PLAN YOUR TRIP
             </Button>
+
 
             <MobileNav />
           </div>

@@ -1,6 +1,8 @@
 import CTABanner from "@/components/shared/CTABanner";
 import Button from "@/components/ui/Button";
 import { FiArrowRight, FiPhoneCall } from "react-icons/fi";
+import { contactUrl } from "@/lib/routes";
+import { SITE_CONFIG } from "@/lib/site";
 
 const FinalCTA = () => (
   <div data-home-final-cta id="final-cta">
@@ -13,7 +15,7 @@ const FinalCTA = () => (
       primaryAction={
         <div className="flex flex-col items-start gap-3 sm:items-end">
           <Button
-            href="/contact"
+            href={contactUrl({ type: "trip", source: "home-final-cta" })}
             variant="white"
             size="lg"
             data-analytics-id="final-cta-start-planning"
@@ -26,8 +28,8 @@ const FinalCTA = () => (
           <p className="body5 flex items-center gap-1.5 text-white/90">
             <FiPhoneCall aria-hidden="true" className="shrink-0" />
             Prefer to talk? Call our specialists at{" "}
-            <a href="tel:18004536744" className="font-semibold underline underline-offset-2 hover:text-white">
-              1-800-453-6744
+            <a href={`tel:${SITE_CONFIG.phoneTel}`} className="font-semibold underline underline-offset-2 hover:text-white">
+              {SITE_CONFIG.phoneDisplay}
             </a>
           </p>
         </div>
@@ -35,5 +37,6 @@ const FinalCTA = () => (
     />
   </div>
 );
+
 
 export default FinalCTA;

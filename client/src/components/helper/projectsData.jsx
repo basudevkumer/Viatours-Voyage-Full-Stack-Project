@@ -37,7 +37,8 @@ export const footerData = [
     id: 2,
     title: "Support",
     links: [
-      { label: "Get in Touch", path: "/contact" },
+      { label: "Get in Touch", path: "/contact?type=question&source=footer" },
+
       // TODO(routes): Add a help center page before linking this item.
       { label: "Help center", path: "#" },
       // TODO(routes): Add live chat before linking this item.

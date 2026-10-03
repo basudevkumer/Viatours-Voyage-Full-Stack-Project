@@ -3,6 +3,8 @@ import SectionHeading from "@/components/shared/SectionHeading";
 import NewsletterForm from "@/components/shared/NewsletterForm";
 import CTABanner from "@/components/shared/CTABanner";
 import Button from "@/components/ui/Button";
+import { contactUrl } from "@/lib/routes";
+
 
 export default function AboutFinalCTA() {
   return (
@@ -46,7 +48,7 @@ export default function AboutFinalCTA() {
         }
         secondaryAction={
           <Button
-            href="/contact"
+            href={contactUrl({ type: "trip", source: "about-final-cta" })}
             variant="outline"
             size="lg"
             className="border-white/30 text-white hover:border-white hover:bg-white hover:text-dark"
@@ -55,6 +57,7 @@ export default function AboutFinalCTA() {
             Contact our desk
           </Button>
         }
+
       />
     </div>
   );

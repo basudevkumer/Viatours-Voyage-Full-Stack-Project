@@ -1,2 +1,15 @@
-// TODO(api): Replace this acknowledgement with POST /contact.
-export async function submitContact() { return { success: false, message: "Contact form delivery is not connected yet. Email hi@viatours.com for assistance.", errors: [] }; }
+// TODO(api): Replace this mock with apiRequest('/contact', { method: 'POST', body: contactData }).
+import { submitLead } from "./leadService";
+
+/**
+ * Thin wrapper for backward compatibility with existing contact form callers.
+ *
+ * @param {Object} contactData
+ * @returns {Promise<{ success: boolean, message: string, data?: Object, errors?: Array }>}
+ */
+export async function submitContact(contactData = {}) {
+  return submitLead({
+    type: contactData.subject || "question",
+    ...contactData,
+  });
+}

@@ -1,6 +1,7 @@
 import CTABanner from "@/components/shared/CTABanner";
 import Button from "@/components/ui/Button";
 import { FiUsers, FiArrowRight } from "react-icons/fi";
+import { contactUrl } from "@/lib/routes";
 
 export default function GroupTravel() {
   return (
@@ -13,7 +14,7 @@ export default function GroupTravel() {
         text="Whether organizing a milestone family gathering, private club excursion, or executive offsite, our bespoke desk arranges dedicated motorcoaches, boutique buyouts, and personalized host managers."
         primaryAction={
           <Button
-            href="/contact?type=group"
+            href={contactUrl({ type: "group", source: "home-group-travel" })}
             variant="primary"
             size="lg"
             data-analytics-id="group-travel-quote-cta"
@@ -23,6 +24,7 @@ export default function GroupTravel() {
             Request a group quote
           </Button>
         }
+
         secondaryAction={
           <Button
             href="#plan-my-trip"
